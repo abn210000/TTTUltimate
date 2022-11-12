@@ -18,8 +18,8 @@ public class BoardUlt{ // package visibility / default
     
     private void setSize(int row, int col)  {
     	// check if board dimensions are valid
-        if (row < 3 || col < 3) {
-            System.out.println("min board size is 3");
+    	if (row < 3 || col < 3) {
+            System.out.println("min board size is 3!");
            
         }
         else{
@@ -36,6 +36,7 @@ public class BoardUlt{ // package visibility / default
         for (int i = 0; i < boxes.length; i++)  {
             BoxUlt b = new BoxUlt(i/boardColSize, i%boardRowSize);
             boxes[i] = b;
+            System.out.print("box " + i);
         }
         // print the empty, initialized board
         System.out.println("hello");
