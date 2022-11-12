@@ -1,6 +1,7 @@
 public class TTTUltimateGame {
 	private ComputerPlayer[] players = new ComputerPlayer[2];
 	private BoardUlt board;
+	private WholeBoard wholeBoard;
 	
 	private String[] marks = {"X", "O"};
 	private String name = "TicTacToe";
@@ -18,8 +19,10 @@ public class TTTUltimateGame {
 		setBoard();
 	}
 	
+	// create game board
 	private void setBoard() {
-		this.board = new BoardUlt(gameRowSize, gameColSize, "TTT Game");
+		this.wholeBoard = new WholeBoard(gameRowSize, gameColSize);
+		//this.board = new BoardUlt(gameRowSize, gameColSize, "TTT Game");
 	}
 	
 	

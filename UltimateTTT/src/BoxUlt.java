@@ -55,7 +55,7 @@ public class BoxUlt{
     	
     }
     
-    // check if string is numberic
+    // check if string is numeric
     public static boolean isNumeric(String s) {
         if (s == null) {
             return false;
@@ -76,11 +76,24 @@ public class BoxUlt{
     	}
     	return false;
     }
-    
-    // print
     void print(){
-        System.out.print(placeHolder + " ");
+    	// if col == 2, print both edges
+    	if(col == 2) {
+    		System.out.print("| " + placeHolder + " | ");
+    	}
+    	else {
+    		System.out.print("| " + placeHolder + " ");
+    	}
+    		
     }
+    /*
+    // print
+    void print() {
+        if (Integer.valueOf(placeHolder) == 2 || Integer.valueOf(placeHolder) == 5 || Integer.valueOf(placeHolder) == 8)
+            System.out.print("| "+placeHolder + " |");
+        else
+            System.out.print("| "+ placeHolder + " ");
+    }*/
     
 
 }

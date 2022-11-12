@@ -21,11 +21,11 @@ public class DriverMainUlt {
 			game1.start();
 			break;
 		
-		
 		case 2:
 			TTTUltimateGame game2 = new TTTUltimateGame();
 			game2.start();
 			break;
+			
 		case 3:
 			TTTUltimateGame game3 = new TTTUltimateGame();
 			game3.start();

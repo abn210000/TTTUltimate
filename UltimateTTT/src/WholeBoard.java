@@ -5,6 +5,8 @@ public class WholeBoard {
 	BoardUlt[] boards;
 	String name;
 	int currentBoard;
+
+	
 	
 	// default constructor
 	WholeBoard(){
@@ -30,16 +32,36 @@ public class WholeBoard {
     }
 	
 	 private void init() {
-	    	// declare new board object of size of board
+	    	// declare new board object of size 9 of board
 	        boards = new BoardUlt[wholeColSize * wholeRowSize];
 	        // initialize each individual board for master board
 	        for (int i = 0; i < boards.length; i++)  {
 	            BoardUlt b = new BoardUlt(i/wholeColSize, i%wholeRowSize, "Ultimate TTT");
 	            boards[i] = b;
+	            
 	        }
 	        // print the empty, initialized board
-	        //print();
+	        print();
 	    }
 	 
+	 void print()    {
+	        System.out.println("printing whole board");
+	        // for loop will print the board and the current markers
+	        for (int i = 0; i < boards.length; i++) {
+	        	/*if (i != 0 && i%wholeColSize == 0) {
+	        		System.out.println();
+	        	}*/
+	        	// 2 5 8
+	        	if(i == 2 || i == 5 || i == 8) {
+	        		System.out.println("Hello from board " + i + " ");
+	        	}
+	        	else {
+	        		System.out.print("Hello from board " + i + " ");
+	        	}
+	        	//boards[i].print();
+	        	
+	        }
+	        System.out.println("");
+	    }
 	
 }
