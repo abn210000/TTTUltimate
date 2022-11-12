@@ -100,4 +100,5 @@ public class BoardUlt{ // package visibility / default
     void setName(String name){
         this.name = name;
     }
+    
 }

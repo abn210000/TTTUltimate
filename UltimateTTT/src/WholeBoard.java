@@ -7,9 +7,9 @@ public class WholeBoard {
 	int currentBoard;
 	
 	// default constructor
-	WholeBoard(){
+	/*WholeBoard(){
 		this(3,3);
-	}
+	}*/
 	
 	// custom constructor that creates whole board of size 3
 	WholeBoard(int rowSize, int colSize){
@@ -38,7 +38,7 @@ public class WholeBoard {
 	            boards[i] = b;
 	        }
 	        // print the empty, initialized board
-	        print();
+	        //print();
 	    }
 	 
 	

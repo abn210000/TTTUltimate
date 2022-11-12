@@ -25,4 +25,5 @@ class ComputerPlayer {
   public int randomNumber(int range) {
 	  return (int)(Math.random() * range);
   }
+  
 }
