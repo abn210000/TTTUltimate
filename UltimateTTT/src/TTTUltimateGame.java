@@ -43,14 +43,14 @@ public class TTTUltimateGame {
 	 */
 	
 	public void start() {
-		System.out.println("game has started...");
+		System.out.println("game has started...");/*
 		do {
 			switchPlayer();
 			while(!board.makeMove(players[this.currentPlayerIndex].getSymbol(), players[this.currentPlayerIndex].randomNumber(gameRowSize),players[this.currentPlayerIndex].randomNumber(gameColSize)));
 			board.print();
-		}while(!gameOver());
+		}while(!gameOver());*/
 	}
-	
+	/*
 	private void switchPlayer() {
 		if (this.currentPlayerIndex == -1 || this.currentPlayerIndex == 1) {
 			this.currentPlayerIndex = 0;
@@ -163,5 +163,5 @@ public class TTTUltimateGame {
 			}
 		}
 		return false;
-	}
+	}*/
 }

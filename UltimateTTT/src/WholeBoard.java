@@ -48,17 +48,15 @@ public class WholeBoard {
 	        System.out.println("printing whole board");
 	        // for loop will print the board and the current markers
 	        for (int i = 0; i < boards.length; i++) {
-	        	/*if (i != 0 && i%wholeColSize == 0) {
-	        		System.out.println();
-	        	}*/
+	        	currentBoard = i;
 	        	// 2 5 8
-	        	if(i == 2 || i == 5 || i == 8) {
-	        		System.out.println("Hello from board " + i + " ");
+	        	/*if(i == 2 || i == 5 || i == 8) {
+	        		System.out.println("Hello from board " + currentBoard + " ");
 	        	}
 	        	else {
-	        		System.out.print("Hello from board " + i + " ");
-	        	}
-	        	//boards[i].print();
+	        		System.out.print("Hello from board " + currentBoard + " ");
+	        	}*/
+	        	boards[currentBoard].print();
 	        	
 	        }
 	        System.out.println("");
