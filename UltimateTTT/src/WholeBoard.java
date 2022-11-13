@@ -36,8 +36,9 @@ public class WholeBoard {
 	        boards = new BoardUlt[wholeColSize * wholeRowSize];
 	        // initialize each individual board for master board
 	        for (int i = 0; i < boards.length; i++)  {
-	            BoardUlt b = new BoardUlt(i/wholeColSize, i%wholeRowSize, "Ultimate TTT");
+	            BoardUlt b = new BoardUlt(wholeColSize, wholeRowSize, "Ultimate TTT");
 	            boards[i] = b;
+	            currentBoard = i;
 	            
 	        }
 	        // print the empty, initialized board
@@ -49,6 +50,7 @@ public class WholeBoard {
 	        // for loop will print the board and the current markers
 	        for (int i = 0; i < boards.length; i++) {
 	        	currentBoard = i;
+	        	
 	        	// 2 5 8
 	        	/*if(i == 2 || i == 5 || i == 8) {
 	        		System.out.println("Hello from board " + currentBoard + " ");
@@ -56,7 +58,7 @@ public class WholeBoard {
 	        	else {
 	        		System.out.print("Hello from board " + currentBoard + " ");
 	        	}*/
-	        	boards[currentBoard].print();
+	        	boards[currentBoard].print(currentBoard);
 	        	
 	        }
 	        System.out.println("");

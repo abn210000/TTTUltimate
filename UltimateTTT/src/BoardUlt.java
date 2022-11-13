@@ -43,51 +43,49 @@ public class BoardUlt{ // package visibility / default
         //print();
     }
    
-    // return current board
-    public int getCurrentBoard(int row, int col) {
-    	if(row == 0 && col == 0) {
-        	currentBoard = 0;
-        }
-        else if (row == 0 && col == 1) {
-        	currentBoard = 1;
-        }
-        else if (row == 0 && col == 2) {
-        	currentBoard = 2;
-        }
-        else if (row == 1 && col == 0) {
-        	currentBoard = 3;
-        }
-        else if (row == 1 && col == 1) {
-        	currentBoard = 4;
-        }
-        else if (row == 1 && col == 2) {
-        	currentBoard = 5;
-        }
-        else if (row == 2 && col == 0) {
-        	currentBoard = 6;
-        }
-        else if (row == 2 && col == 1) {
-        	currentBoard = 7;
-        }
-        else if (row == 2 && col == 2) {
-        	currentBoard = 8;
-        }
-    	return currentBoard;
-    }
-    
     // this method will print the current board and status of the game
-    void print(){
-    	//currentBoard = i;
-    	currentBoard = getCurrentBoard(boardRowSize, boardColSize);
-    	System.out.print("printing Board " + currentBoard + " ");
-    	
-        // for loop will print the board and the current markers
-        for (int i = 0; i < boxes.length; i++) {
-        	boxes[i].print();
-        }
-        if(currentBoard == 2 || currentBoard == 5 || currentBoard == 8) {
-        	System.out.println("");
-        }
+    	void print(int currentBoard){
+    		int currentRow = 0;
+    		int currentCol = 0;
+	    	
+    		if(currentBoard >= 0 && currentBoard <= 2) {
+    			for (int i = 0; i < boxes.length; i++) {
+    	        	// print out board number on left hand size
+    				if(i % boardColSize == 0) {
+    	        		System.out.print("Board #" + currentBoard + " ");
+    	        	}
+    	        	
+    	        	// print individual boxes
+    	        	
+    	        	boxes[i].print(currentBoard);
+    	        	
+    	        }
+    	        // print newlines every 2 5 and 8
+    	        if(currentBoard == 2 || currentBoard == 5 || currentBoard == 8) {
+    	        	System.out.println("");
+    	        }
+    		}
+    		
+    		
+    		
+    		/*
+	        // for loop will print the board and the current markers
+	        for (int i = 0; i < boxes.length; i++) {
+	        	// print out board number on left hand size
+	        	if(currentCol == 0) {
+	        		System.out.print("Board #" + currentBoard + " ");
+	        		currentCol++;
+	        	}
+	        	
+	        	// print individual boxes
+	        	
+	        	boxes[i].print(currentBoard);
+	        	
+	        }
+	        // print newlines every 2 5 and 8
+	        if(currentBoard == 2 || currentBoard == 5 || currentBoard == 8) {
+	        	System.out.println("");
+	        }*/
     }
     
     // this method will set a place holder on the desired box

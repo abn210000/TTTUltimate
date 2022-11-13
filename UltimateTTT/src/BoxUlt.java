@@ -6,6 +6,7 @@ public class BoxUlt{
     //private String placeHolder = BoxUlt.DASH;
     private String placeHolder = "";
     
+    // custom constructor to set rows and set initial placeHolders
     BoxUlt(int row, int col)   {
         this.row = row;
         this.col = col;
@@ -55,7 +56,7 @@ public class BoxUlt{
     	
     }
     
-    // check if string is numeric
+    // check if string is numeric (just for is available)
     public static boolean isNumeric(String s) {
         if (s == null) {
             return false;
@@ -68,7 +69,7 @@ public class BoxUlt{
         return true;
     }
     	
-    
+    // is available if there isnt a mark
     boolean isAvailable() {
     	// return true if placeHolder is a number
     	if (isNumeric(placeHolder)) {
@@ -76,24 +77,40 @@ public class BoxUlt{
     	}
     	return false;
     }
-    void print(){
+    
+    void print(int currentBoard){
+    	//if(row == 0 && currentBoard >= 0 && currentBoard <= 2) {
+    		
+    		if(col == 2) {
+    			System.out.print("| " + placeHolder + " | ");
+    			
+    		}
+    		else {
+        		System.out.print("| " + placeHolder + " ");
+    		}
+    	//}
+    	
+		
+		
+    	
+    	
+    	
+    	/*
     	// if col == 2, print both edges
     	if(col == 2) {
-    		System.out.print("| " + placeHolder + " | ");
+    		System.out.println("| " + placeHolder + " | ");
     	}
     	else {
     		System.out.print("| " + placeHolder + " ");
-    	}
+    	}*/
     		
     }
-    /*
-    // print
-    void print() {
-        if (Integer.valueOf(placeHolder) == 2 || Integer.valueOf(placeHolder) == 5 || Integer.valueOf(placeHolder) == 8)
-            System.out.print("| "+placeHolder + " |");
-        else
-            System.out.print("| "+ placeHolder + " ");
-    }*/
+    
+    // box class toString
+    @Override
+    public String toString() {
+    	return placeHolder;
+    }
     
 
 }
