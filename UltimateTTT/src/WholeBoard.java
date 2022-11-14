@@ -36,32 +36,40 @@ public class WholeBoard {
 	        boards = new BoardUlt[wholeColSize * wholeRowSize];
 	        // initialize each individual board for master board
 	        for (int i = 0; i < boards.length; i++)  {
-	            BoardUlt b = new BoardUlt(wholeColSize, wholeRowSize, "Ultimate TTT");
+	        	currentBoard = i;
+	            BoardUlt b = new BoardUlt(wholeColSize, wholeRowSize, "Ultimate TTT", currentBoard);
 	            boards[i] = b;
-	            currentBoard = i;
+	           
 	            
 	        }
 	        // print the empty, initialized board
-	        print();
+	        print(currentBoard);
 	    }
 	 
-	 void print()    {
+	 void print(int currentBoard)    {
 	        System.out.println("printing whole board");
-	        // for loop will print the board and the current markers
-	        for (int i = 0; i < boards.length; i++) {
-	        	currentBoard = i;
-	        	
-	        	// 2 5 8
-	        	/*if(i == 2 || i == 5 || i == 8) {
-	        		System.out.println("Hello from board " + currentBoard + " ");
-	        	}
-	        	else {
-	        		System.out.print("Hello from board " + currentBoard + " ");
-	        	}*/
-	        	boards[currentBoard].print(currentBoard);
-	        	
+	        
+	       
+	        print3Boards(0,3);
+	        print3Boards(3,6);
+	        print3Boards(6,9);
+	 }
+	 
+	 void print3Boards(int b1, int b2) {
+		 for(currentBoard = b1; currentBoard < b2; currentBoard++) {
+	        	boards[currentBoard].printRow0(currentBoard);
 	        }
 	        System.out.println("");
-	    }
-	
-}
+	        // printing row 1 of boards 7 - 9
+	        for(currentBoard = b1; currentBoard < b2; currentBoard++) {
+	        	boards[currentBoard].printRow1(currentBoard);
+	        }
+	        System.out.println("");
+	        // printing row 2 of boards 7 - 9
+	        for(currentBoard = b1; currentBoard < b2; currentBoard++) {
+	        	boards[currentBoard].printRow2(currentBoard);
+	        }
+	        System.out.println("");
+	        System.out.println("");
+	 }
+ }

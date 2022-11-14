@@ -1,10 +1,12 @@
 public class BoxUlt{
     private int row;
     private int col;
+    static int counter = 0;
  
     //private final static String DASH = "-";
     //private String placeHolder = BoxUlt.DASH;
     private String placeHolder = "";
+    private int currentBox = 0;
     
     // custom constructor to set rows and set initial placeHolders
     BoxUlt(int row, int col)   {
@@ -14,30 +16,39 @@ public class BoxUlt{
         // initialize boxes with corresponding numbers
         if(row == 0 && col == 0) {
         	placeHolder = "0";
+        	currentBox = 0;
         }
         else if (row == 0 && col == 1) {
         	placeHolder = "1";
+        	currentBox = 1;
         }
         else if (row == 0 && col == 2) {
         	placeHolder = "2";
+        	currentBox = 2;
         }
         else if (row == 1 && col == 0) {
         	placeHolder = "3";
+        	currentBox = 3;
         }
         else if (row == 1 && col == 1) {
         	placeHolder = "4";
+        	currentBox = 4;
         }
         else if (row == 1 && col == 2) {
         	placeHolder = "5";
+        	currentBox = 5;
         }
         else if (row == 2 && col == 0) {
         	placeHolder = "6";
+        	currentBox = 6;
         }
         else if (row == 2 && col == 1) {
         	placeHolder = "7";
+        	currentBox = 7;
         }
         else if (row == 2 && col == 2) {
         	placeHolder = "8";
+        	currentBox = 8;
         
         }
     }
@@ -79,30 +90,16 @@ public class BoxUlt{
     }
     
     void print(int currentBoard){
-    	//if(row == 0 && currentBoard >= 0 && currentBoard <= 2) {
-    		
-    		if(col == 2) {
-    			System.out.print("| " + placeHolder + " | ");
-    			
-    		}
-    		else {
-        		System.out.print("| " + placeHolder + " ");
-    		}
-    	//}
     	
-		
-		
-    	
-    	
-    	
-    	/*
-    	// if col == 2, print both edges
-    	if(col == 2) {
-    		System.out.println("| " + placeHolder + " | ");
-    	}
-    	else {
-    		System.out.print("| " + placeHolder + " ");
-    	}*/
+	    	if(col == 0) {
+	    		System.out.print("Board #" + currentBoard + " ");
+	    	}
+	    	if(col == 2) {
+	    		System.out.print("| " + placeHolder + " | ");
+	    	}
+	    	else {
+	    		System.out.print("| " + placeHolder + " ");
+	    	}
     		
     }
     
