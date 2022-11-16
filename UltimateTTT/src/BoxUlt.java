@@ -102,12 +102,5 @@ public class BoxUlt{
 	    	}
     		
     }
-    
-    // box class toString
-    @Override
-    public String toString() {
-    	return placeHolder;
-    }
-    
 
 }

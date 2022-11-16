@@ -1,13 +1,12 @@
 public class BoardUlt{ // package visibility / default
-    private int boardRowSize;
-    private int boardColSize;
+    private int boardRowSize = 0;
+    private int boardColSize = 0;
     private BoxUlt[] boxes;
     private String name;
     private int currentBoard = 0;
     int currentRow = 0;
 	int currentCol = 0;
 	static int counter = 0;
-    // default constructor
     
     
     // custom constructor
@@ -22,17 +21,12 @@ public class BoardUlt{ // package visibility / default
     	this.currentBoard = currentBoard;
     }
     private void setSize(int row, int col)  {
-    	// check if board dimensions are valid
-    	/*if (row < 3 || col < 3) {
-            System.out.println("min board size is 3!");
-           
-        }
-        else{*/
+    	
             this.boardColSize = col;
             this.boardRowSize = row;
             init();
-        }
-   // }
+    }
+   
     
     private void init() {
     	// declare new box object of size of board
@@ -42,9 +36,7 @@ public class BoardUlt{ // package visibility / default
             BoxUlt b = new BoxUlt(i/boardColSize, i%boardRowSize);
             boxes[i] = b;
         }
-        // print the empty, initialized board
-        
-        //print();
+       
     }
    
     	
@@ -78,12 +70,11 @@ public class BoardUlt{ // package visibility / default
 		
     
 
-	
-    
     // this method will set a place holder on the desired box
-    boolean makeMove(String mark, int row, int col) {
+    boolean makeMove(String mark, int row, int col, int board) {
     	return boxes[row * this.boardRowSize + col].setPlaceHolder(mark);
     }
+    
     
     // this method determines if the boxes are full or empty
     public boolean isFull() {
@@ -100,6 +91,7 @@ public class BoardUlt{ // package visibility / default
     	return boxes[row * this.boardRowSize + col].getPlaceHolder();
     	
     }
+    
     
     
     int getRow()    {

@@ -11,6 +11,7 @@ public class TTTUltimateGame {
 	private int gameScoreToWin = 3;
 	
 	private int currentPlayerIndex = -1;
+	private int currentBoard = 0;
 	
 	
 	// constructor
@@ -22,7 +23,7 @@ public class TTTUltimateGame {
 	// create game board
 	private void setBoard() {
 		this.wholeBoard = new WholeBoard(gameRowSize, gameColSize);
-		//this.board = new BoardUlt(gameRowSize, gameColSize, "TTT Game");
+		//this.board = new BoardUlt(gameRowSize, gameColSize, "TTT Game", 0);
 	}
 	
 	
@@ -33,24 +34,38 @@ public class TTTUltimateGame {
 		}
 	}
 	
-	/*
-	 * 1 - Start game message
-	 * 2 - Select current player index
-	 * 3 - Player should select row and col to place symbol
-	 * 4 - Board should check if box is available, and if so, place mark, otherwise repeat
-	 * 5 - Print the board
-	 * 6 - Repeat the steps for other player until one player wins or the board is full
-	 */
 	
 	public void start() {
-		System.out.println("game has started...");/*
+		System.out.println("game has started...");
 		do {
 			switchPlayer();
-			while(!board.makeMove(players[this.currentPlayerIndex].getSymbol(), players[this.currentPlayerIndex].randomNumber(gameRowSize),players[this.currentPlayerIndex].randomNumber(gameColSize)));
-			board.print();
-		}while(!gameOver());*/
+			
+			
+			while(!wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(), // mark
+					players[this.currentPlayerIndex].randomNumber(gameRowSize),	// random row
+					players[this.currentPlayerIndex].randomNumber(gameColSize), // random col
+					players[this.currentPlayerIndex].randomNumber(9)));			// random board
+			
+			
+			//wholeBoard.print(currentBoard);
+				print(currentBoard);
+		}while(!boardOver());
 	}
-	/*
+	
+	void print(int currentBoard) {
+		/*
+		board.printRow0(currentBoard);
+		System.out.println("");
+		board.printRow1(currentBoard);
+		System.out.println("");
+		board.printRow2(currentBoard);
+		System.out.println("");
+		System.out.println("");
+		*/
+		wholeBoard.print(currentBoard);
+	}
+	
+	// this method switches the players
 	private void switchPlayer() {
 		if (this.currentPlayerIndex == -1 || this.currentPlayerIndex == 1) {
 			this.currentPlayerIndex = 0;
@@ -61,12 +76,12 @@ public class TTTUltimateGame {
 	}
 	
 	// when board is full or there is a winner
-	private boolean gameOver() {
+	private boolean boardOver() {
 		if (isWinner()) {
 			System.out.println(this.marks[this.currentPlayerIndex] + " is the winner!");
 			return true;
 		}
-		else if (board.isFull()){
+		else if (wholeBoard.isFull()){
 			System.out.println("Tie!");
 			return true;
 		}
@@ -105,7 +120,7 @@ public class TTTUltimateGame {
 	private boolean checkCol(int col)	{
 		int count = 0;
 		for (int row = 0; row < this.gameRowSize; row++) {
-			if (board.getMark(row, col).equals(players[currentPlayerIndex].getSymbol())) {
+			if (wholeBoard.getMark(row, col).equals(players[currentPlayerIndex].getSymbol())) {
 				count++;
 			}
 		}
@@ -128,7 +143,7 @@ public class TTTUltimateGame {
 	private boolean checkRow(int row) {
 		int count = 0;
 		for (int col = 0; col < this.gameColSize; col++) {
-			if (board.getMark(row, col).equals(players[currentPlayerIndex].getSymbol())) {
+			if (wholeBoard.getMark(row, col).equals(players[currentPlayerIndex].getSymbol())) {
 				count++;
 			}
 			if (count == this.gameScoreToWin) {
@@ -141,7 +156,7 @@ public class TTTUltimateGame {
 	private boolean checkDiagLR() {
 		int count = 0;
 		for (int row = 0, col = this.gameRowSize - 1; row < this.gameColSize && col >= 0; row++, col--) {
-			if (board.getMark(row, col).equals(players[currentPlayerIndex].getSymbol())) {
+			if (wholeBoard.getMark(row, col).equals(players[currentPlayerIndex].getSymbol())) {
 				count++;
 			}
 			if (count == this.gameScoreToWin) {
@@ -154,7 +169,7 @@ public class TTTUltimateGame {
 	private boolean checkDiagRL() {
 		int count = 0;
 		for (int col = 0, row = 0; col < this.gameColSize && row < this.gameRowSize; col++, row++) {
-			if (board.getMark(row, col).equals(players[currentPlayerIndex].getSymbol())) {
+			if (wholeBoard.getMark(row, col).equals(players[currentPlayerIndex].getSymbol())) {
 				count++;
 			}
 			
@@ -163,5 +178,5 @@ public class TTTUltimateGame {
 			}
 		}
 		return false;
-	}*/
+	}
 }
