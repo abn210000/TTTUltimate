@@ -55,7 +55,20 @@ public class WholeBoard {
 		
 		 return boards[row * 3 + col].makeMove(mark, row, col, boardChoice);
 	 }
-	
+
+ // this method determines if the boxes are full or empty
+    public boolean isFull() {
+    	for(BoardUlt b : boards) {
+    		if (b.isAvailable()) {
+    			return false;
+    		}
+    	}
+    	return true;
+    }
+    
+    
+	    
+	    
 	 
 	 // this method prints the entire board
 	 void print(int currentBoard)    {

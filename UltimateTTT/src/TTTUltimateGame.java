@@ -47,7 +47,6 @@ public class TTTUltimateGame {
 					players[this.currentPlayerIndex].randomNumber(9)));			// random board
 			
 			
-			//wholeBoard.print(currentBoard);
 				print(currentBoard);
 		}while(!boardOver());
 	}

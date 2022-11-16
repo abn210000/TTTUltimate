@@ -92,7 +92,25 @@ public class BoardUlt{ // package visibility / default
     	
     }
     
-    
+ 
+    	
+    // is available if the board isn't full
+    boolean isAvailable() {
+    	int counter = 0;
+    	// go through each box in the specific board
+    	for(int i = 0; i < 9; i++) {
+    		// increase counter if box is full
+    		if(!boxes[i].isAvailable()) {
+    			counter++;
+    		}
+    	}
+    	// if board is completely full, return false
+		if(counter == 9) {
+			return false;
+		}
+		
+		return true;
+    }
     
     int getRow()    {
         return boardRowSize;
