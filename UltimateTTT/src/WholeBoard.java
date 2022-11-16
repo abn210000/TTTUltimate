@@ -53,7 +53,7 @@ public class WholeBoard {
 
 	 boolean makeMove(String mark, int row, int col, int boardChoice) {
 		
-		 return boards[row * 3 + col].makeMove(mark, row, col, boardChoice);
+		 return boards[boardChoice].makeMove(mark, row, col, boardChoice);
 	 }
 
  // this method determines if the boxes are full or empty
@@ -65,10 +65,6 @@ public class WholeBoard {
     	}
     	return true;
     }
-    
-    
-	    
-	    
 	 
 	 // this method prints the entire board
 	 void print(int currentBoard)    {

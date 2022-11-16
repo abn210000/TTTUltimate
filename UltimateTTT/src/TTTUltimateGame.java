@@ -23,7 +23,6 @@ public class TTTUltimateGame {
 	// create game board
 	private void setBoard() {
 		this.wholeBoard = new WholeBoard(gameRowSize, gameColSize);
-		//this.board = new BoardUlt(gameRowSize, gameColSize, "TTT Game", 0);
 	}
 	
 	
@@ -40,12 +39,11 @@ public class TTTUltimateGame {
 		do {
 			switchPlayer();
 			
-			
 			while(!wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(), // mark
 					players[this.currentPlayerIndex].randomNumber(gameRowSize),	// random row
 					players[this.currentPlayerIndex].randomNumber(gameColSize), // random col
 					players[this.currentPlayerIndex].randomNumber(9)));			// random board
-			
+				
 			
 				print(currentBoard);
 		}while(!boardOver());
