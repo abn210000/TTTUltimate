@@ -68,13 +68,13 @@ public class BoardUlt{ // package visibility / default
        
     }
 		
-    
-
     // this method will set a place holder on the desired box
     boolean makeMove(String mark, int row, int col, int board) {
+    	
+    	
     	return boxes[row * this.boardRowSize + col].setPlaceHolder(mark);
     }
-    
+   
     
     // this method determines if the boxes are full or empty
     public boolean isFull() {
