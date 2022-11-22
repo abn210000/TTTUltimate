@@ -1,7 +1,9 @@
 import java.util.LinkedList;
 
+// AI VS AI
 public class TTTUltimateGame {
 	private ComputerPlayer[] players = new ComputerPlayer[2];
+	
 	private WholeBoard wholeBoard;
 	
 	private String[] marks = {"X", "O"};
@@ -13,6 +15,9 @@ public class TTTUltimateGame {
 	
 	private int currentPlayerIndex = 0;
 	private int currentBoard = 0;
+	
+	// create a new array to hold the won boards and marks
+	String[] wonBoards = new String[9];
 	
 	public int lastMove = 0;
 	
@@ -44,10 +49,11 @@ public class TTTUltimateGame {
 				switchPlayer();
 				// while loop to alternate player moves, passing in random row, col and board num
 				while(!wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),// mark
+						players[this.currentPlayerIndex].randomNumber(9),
 						players[this.currentPlayerIndex].randomNumber(gameRowSize),	// random row
 						players[this.currentPlayerIndex].randomNumber(gameColSize), // random col
-						players[this.currentPlayerIndex].randomNumber(9), count));	// random board
-						
+						count));	// random board
+					
 						System.out.println("count == " + count);
 						count++;
 					print(currentBoard);
@@ -90,10 +96,7 @@ public class TTTUltimateGame {
 		}
 		return false;
 	}
-	
-	// create a new array and initialize with 9s
-	String[] wonBoards = new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8"};
-	
+
 	//LinkedList<Integer> wonBoards = new LinkedList<Integer>();
 	
 	boolean checkWholeBoard(String[] wonBoards) {
@@ -124,32 +127,27 @@ public class TTTUltimateGame {
 			return true;
 		}
 		
+		// print (DELETE LATER)
 		for(int i = 0; i < 9; i++) {
-			System.out.print(wonBoards[i]);
+			System.out.print(wonBoards[i] + " ");
 			
 		}
 		return false;
-		// if(wonBoards[0] == wonBoards[1] == wonBoards[2]
+		
 	}
 	
 	
 	void checkSmallWinLoop() {
 		// iterate through each small board
 		for(int smallBoard = 0; smallBoard < 9; smallBoard++) {
-			// if current player mark is X and there is NOT an 0 already in wonboards[smallBoards], place mark
-			if(wonBoards[smallBoard] != "O" && players[currentPlayerIndex].getSymbol() == "X") {
+			// if element at smallBoard in wonBoards array is null, you are permitted to place a mark
+			if(wonBoards[smallBoard] == null) {
 				if(checkSmallBoardWin(smallBoard) == true) {
 					// if the opposing board has NOT already placed there, may place own mark
 					
 						wonBoards[smallBoard] = players[currentPlayerIndex].getSymbol();
 				}
 			}
-			else if(wonBoards[smallBoard] != "X" && players[currentPlayerIndex].getSymbol() == "O") {
-				if(checkSmallBoardWin(smallBoard) == true) {
-					wonBoards[smallBoard] = players[currentPlayerIndex].getSymbol();
-				}
-			}
-				
 			
 		}
 	}
@@ -183,7 +181,7 @@ public class TTTUltimateGame {
 	
 	// check if a row has been won
 	boolean checkSmallRows(int smallBoard) {
-		for(int row = 0; row < 3; row++) {
+		for(int row = 0; row < this.gameRowSize; row++) {
 			if(checkEachRow(row, smallBoard)) {
 				return true;
 			}
@@ -208,7 +206,7 @@ public class TTTUltimateGame {
 	
 	// check for win in cols
 	boolean checkSmallCols(int smallBoard) {
-		for(int col = 0; col < 3; col++) {
+		for(int col = 0; col < this.gameColSize; col++) {
 			if(checkEachCol(col, smallBoard)) {
 				return true;
 			}
@@ -235,7 +233,7 @@ public class TTTUltimateGame {
 	}
 	
 	
-	
+	// check each diag lr
 	boolean checkSmallDiagLR(int smallBoard) {
 		int count = 0;
 		for (int row = 0, col = this.gameRowSize - 1; row < this.gameColSize && col >= 0; row++, col--) {
@@ -249,6 +247,7 @@ public class TTTUltimateGame {
 		return false;
 	}
 	
+	// check each small diag rl
 	boolean checkSmallDiagRL(int smallBoard) {
 		int count = 0;
 		for (int col = 0, row = 0; col < this.gameColSize && row < this.gameRowSize; col++, row++) {

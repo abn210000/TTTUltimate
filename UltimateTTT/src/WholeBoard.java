@@ -90,18 +90,17 @@ public class WholeBoard {
 	}
 	
 	// this method makes a move for a specific board
-	boolean makeMove(String mark, int row, int col, int boardChoice, int count) {
+	boolean makeMove(String mark, int boardChoice, int row, int col, int count) {
 		
 		// lastRow and lastCol is still previous
 		if(count != 0) {
-		
-		// make mandatory board choice (reinitialized the randomized boardChoice based on previous move)
-		boardChoice = makeMove1(mark, lastRow, lastCol);
+			
+			// make mandatory board choice (reinitialized the randomized boardChoice based on previous move)
+			boardChoice = makeMove1(mark, lastRow, lastCol);
+			
 		}
-		// CAN DELETE LATER
 		
-		
-		tempMove = boards[boardChoice].makeMove(mark, row, col, boardChoice);
+		tempMove = boards[boardChoice].makeMove(mark,boardChoice, row, col);
 		
 		// update last row and col
 		lastRow = row;

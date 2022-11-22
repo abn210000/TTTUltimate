@@ -69,9 +69,9 @@ public class BoardUlt{ // package visibility / default
     }
 		
     // this method will set a place holder on the desired box
-    boolean makeMove(String mark, int row, int col, int board) {
+    boolean makeMove(String mark,int board, int row, int col) {
     	
-    	
+    	//System.out.println("PLAYER " + mark + " HAS PLACED ON ROW " + row + " COL " + col + " BOARD" + board);
     	return boxes[row * this.boardRowSize + col].setPlaceHolder(mark);
     }
    

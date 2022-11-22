@@ -30,7 +30,7 @@ public class DriverMainUlt {
 			break;
 			
 		case 3:
-			TTTUltimateGame game3 = new TTTUltimateGame();
+			TTTUltimateGame1 game3 = new TTTUltimateGame1();
 			game3.start();
 			break;
 		}
