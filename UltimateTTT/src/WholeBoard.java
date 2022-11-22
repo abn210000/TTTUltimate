@@ -34,7 +34,19 @@ public class WholeBoard {
             init();
         }
     }
+	public void setCol(int col) {
+		  lastCol = col;
+	}
+	public void setRow(int row) {
+		lastRow = row;
+	}
 	
+	public int getCol() {
+		return lastCol;
+	}
+	public int getRow() {
+		return lastRow;
+	}
 	
 	private void init() {
     	// declare new board object of size 9 of board
@@ -91,13 +103,13 @@ public class WholeBoard {
 	
 	// this method makes a move for a specific board
 	boolean makeMove(String mark, int boardChoice, int row, int col, int count) {
-		
+		setRow(row);
+		setCol(col);
 		// lastRow and lastCol is still previous
 		if(count != 0) {
-			
 			// make mandatory board choice (reinitialized the randomized boardChoice based on previous move)
 			boardChoice = makeMove1(mark, lastRow, lastCol);
-			
+			//System.out.println("Must Place On Board " + boardChoice);
 		}
 		
 		tempMove = boards[boardChoice].makeMove(mark,boardChoice, row, col);
