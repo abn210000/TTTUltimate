@@ -109,9 +109,10 @@ public class WholeBoard {
 		return mandatoryBoard;
 	}
 	
+	int tempBoard;
 	// this method makes a move for a specific board
 	boolean makeMove(String mark, int boardChoice, int row, int col, int count) {
-		
+		tempBoard = boardChoice;
 		// lastRow and lastCol is still previous
 		if(count != 0) {
 			// make mandatory board choice (reinitialized the randomized boardChoice based on previous move)
