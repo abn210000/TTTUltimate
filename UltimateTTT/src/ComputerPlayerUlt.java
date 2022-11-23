@@ -2,6 +2,7 @@ class ComputerPlayer {
 	
   private String name;
   private String symbol;
+  public int flag = 1;
   
   // constructor
   ComputerPlayer(String name, String symbol){

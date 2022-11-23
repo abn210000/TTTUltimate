@@ -20,7 +20,7 @@ public class DriverMainUlt {
 		switch(gameMode) {
 		
 		case 1:
-			TTTUltimateGame game1 = new TTTUltimateGame();
+			TTTUltimateGame2 game1 = new TTTUltimateGame2();
 			game1.start();
 			break;
 		

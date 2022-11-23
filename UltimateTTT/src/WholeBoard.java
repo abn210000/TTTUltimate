@@ -7,7 +7,7 @@ public class WholeBoard {
 	int currentBoard;
 
 	
-
+	int lastBoard = 0;
 	int lastRow = 0;
 	int lastCol = 0;
 	boolean tempMove;
@@ -46,6 +46,14 @@ public class WholeBoard {
 	}
 	public int getRow() {
 		return lastRow;
+	}
+	
+	public void setBoard(int board) {
+		lastBoard = board;
+	}
+	
+	public int getBoard() {
+		return lastBoard;
 	}
 	
 	private void init() {
@@ -103,8 +111,7 @@ public class WholeBoard {
 	
 	// this method makes a move for a specific board
 	boolean makeMove(String mark, int boardChoice, int row, int col, int count) {
-		setRow(row);
-		setCol(col);
+		
 		// lastRow and lastCol is still previous
 		if(count != 0) {
 			// make mandatory board choice (reinitialized the randomized boardChoice based on previous move)
