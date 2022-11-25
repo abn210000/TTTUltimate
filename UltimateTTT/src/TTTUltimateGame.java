@@ -41,26 +41,30 @@ public class TTTUltimateGame {
 		}
 	}
 
-	
+	boolean makeMoveAI() {
+		return(wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),// mark
+				players[this.currentPlayerIndex].randomNumber(9),
+				players[this.currentPlayerIndex].randomNumber(gameRowSize),	// random row
+				players[this.currentPlayerIndex].randomNumber(gameColSize), // random col
+				count, aiFlag));
+	}
 	public void start() {
 		
 		System.out.println("game has started...");
-		do {
+		while(!GAMEOVER()) {
 				switchPlayer();
 				// while loop to alternate player moves, passing in random row, col and board num
-				while(!wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),// mark
-						players[this.currentPlayerIndex].randomNumber(9),
-						players[this.currentPlayerIndex].randomNumber(gameRowSize),	// random row
-						players[this.currentPlayerIndex].randomNumber(gameColSize), // random col
-						count, aiFlag));	// random board
+				if(makeMoveAI()) {
+					count++;
+				}
 					
-						System.out.println("count == " + count);
-						count++;
+					System.out.println("count == " + count);
+					
 					print(currentBoard);
 				
 			
 			
-		}while(!GAMEOVER());
+		}
 	}
 	
 	void print(int currentBoard) {
