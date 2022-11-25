@@ -69,17 +69,17 @@ public class BoardUlt{ // package visibility / default
     }
 		
     // this method will set a place holder on the desired box
-    boolean makeMove(String mark,int board, int row, int col) {
+    boolean makeMove(String mark,int board, int row, int col, int flag) {
     	
     	//System.out.println("PLAYER " + mark + " HAS PLACED ON ROW " + row + " COL " + col + " BOARD" + board);
-    	return boxes[row * this.boardRowSize + col].setPlaceHolder(mark);
+    	return boxes[row * this.boardRowSize + col].setPlaceHolder(mark, flag);
     }
    
     
     // this method determines if the boxes are full or empty
-    public boolean isFull() {
+    public boolean isFull(int flag) {
     	for(BoxUlt b : boxes) {
-    		if (b.isAvailable()) {
+    		if (b.isAvailable(flag)) {
     			return false;
     		}
     	}
@@ -95,12 +95,12 @@ public class BoardUlt{ // package visibility / default
  
     	
     // is available if the board isn't full
-    boolean isAvailable() {
+    boolean isAvailable(int flag) {
     	int counter = 0;
     	// go through each box in the specific board
     	for(int i = 0; i < 9; i++) {
     		// increase counter if box is full
-    		if(!boxes[i].isAvailable()) {
+    		if(!boxes[i].isAvailable(flag)) {
     			counter++;
     		}
     	}

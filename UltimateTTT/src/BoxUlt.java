@@ -3,8 +3,6 @@ public class BoxUlt{
     private int col;
     static int counter = 0;
  
-    //private final static String DASH = "-";
-    //private String placeHolder = BoxUlt.DASH;
     private String placeHolder = "";
     private int currentBox = 0;
     
@@ -58,8 +56,8 @@ public class BoxUlt{
     	return placeHolder;
     }
     
-    boolean setPlaceHolder(String placeHolder) {
-    	if(isAvailable()) {
+    boolean setPlaceHolder(String placeHolder, int flag) {
+    	if(isAvailable(flag)) {
     		this.placeHolder = placeHolder;
     		return true;
     	}
@@ -81,10 +79,16 @@ public class BoxUlt{
     }
     	
     // is available if there isnt a mark
-    boolean isAvailable() {
+    boolean isAvailable(int flag) {
     	// return true if placeHolder is a number
     	if (isNumeric(placeHolder)) {
     		return true;
+    	}
+    	else if (flag == 1) {
+    		System.out.println("Spot is filled. Enter new move");
+    		
+    		return false;
+
     	}
     	return false;
     }

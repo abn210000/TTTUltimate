@@ -1,10 +1,8 @@
-import java.util.LinkedList;
+// PLAYER VS PLAYER
 
-// AI VS AI
-public class TTTUltimateGame {
+public class TTTUltimateGame1 {
 	
-	private ComputerPlayer[] players = new ComputerPlayer[2];
-	
+	private HumanPlayer[] players = new HumanPlayer[2];
 	private WholeBoard wholeBoard;
 	
 	private String[] marks = {"X", "O"};
@@ -16,14 +14,15 @@ public class TTTUltimateGame {
 	private int currentPlayerIndex = 0;
 	private int currentBoard = 0;
 	
+	int humanFlag = 1;
+	int count = 0;
 	
-	String[] wonBoards = new String[9];	// create a new array to hold the won boards and marks
+	// create a new array to hold the won boards and marks
+	String[] wonBoards = new String[9];
 	
-	public int aiFlag = 0;
-	public int count = 0;
 	
 	// constructor
-	public TTTUltimateGame() {
+	public TTTUltimateGame1() {
 		setPlayers();
 		setBoard();
 	}
@@ -33,14 +32,13 @@ public class TTTUltimateGame {
 		this.wholeBoard = new WholeBoard(gameRowSize, gameColSize);
 	}
 	
-	// set players
+	
 	private void setPlayers() {
 		for (int i = 0; i < players.length; i++) {
-			ComputerPlayer p = new ComputerPlayer("player " + i+1, marks[i]);
+			HumanPlayer p = new HumanPlayer("player " + i+1, marks[i]);
 			players[i] = p;
 		}
 	}
-
 	
 	public void start() {
 		
@@ -48,20 +46,24 @@ public class TTTUltimateGame {
 		do {
 				switchPlayer();
 				// while loop to alternate player moves, passing in random row, col and board num
-				while(!wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),// mark
-						players[this.currentPlayerIndex].randomNumber(9),
-						players[this.currentPlayerIndex].randomNumber(gameRowSize),	// random row
-						players[this.currentPlayerIndex].randomNumber(gameColSize), // random col
-						count, aiFlag));	// random board
-					
-						System.out.println("count == " + count);
-						count++;
-					print(currentBoard);
 				
+				while(!wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),
+						players[this.currentPlayerIndex].getBoard(count), // mark
+						players[this.currentPlayerIndex].getRow(),	// random row
+						players[this.currentPlayerIndex].getCol(), // random col
+						count, humanFlag));	// random board
+	
+					System.out.println("Must place NEXT move on board #" + wholeBoard.makeMove1(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()));
+					System.out.println("count == " + count);
+					count++;
+					print(currentBoard);
+			
 			
 			
 		}while(!GAMEOVER());
 	}
+	
+	
 	
 	void print(int currentBoard) {
 		
@@ -130,6 +132,7 @@ public class TTTUltimateGame {
 			System.out.print(wonBoards[i] + " ");
 			
 		}
+		System.out.println("");
 		return false;
 		
 	}
@@ -259,5 +262,4 @@ public class TTTUltimateGame {
 		}
 		return false;
 	}
-	
 }

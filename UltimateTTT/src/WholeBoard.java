@@ -111,7 +111,7 @@ public class WholeBoard {
 	
 	int tempBoard;
 	// this method makes a move for a specific board
-	boolean makeMove(String mark, int boardChoice, int row, int col, int count) {
+	boolean makeMove(String mark, int boardChoice, int row, int col, int count, int flag) {
 		tempBoard = boardChoice;
 		// lastRow and lastCol is still previous
 		if(count != 0) {
@@ -120,7 +120,7 @@ public class WholeBoard {
 			//System.out.println("Must Place On Board " + boardChoice);
 		}
 		
-		tempMove = boards[boardChoice].makeMove(mark,boardChoice, row, col);
+		tempMove = boards[boardChoice].makeMove(mark,boardChoice, row, col, flag);
 		
 		// update last row and col
 		lastRow = row;
@@ -132,9 +132,9 @@ public class WholeBoard {
 	
 	
 	 // this method determines if the boxes are full or empty
-	public boolean isFull() {
+	public boolean isFull(int flag) {
 		for(BoardUlt b : boards) {
-			if (b.isAvailable()) {
+			if (b.isAvailable(flag)) {
 				return false;
 			}
 		}
