@@ -1,8 +1,7 @@
-import java.util.LinkedList;
 import java.util.Scanner;
 
 //HUMAN VS AI
-public class TTTUltimateGame2 {
+public class PlayerVSAI {
 	private ComputerPlayer ai = new ComputerPlayer("player 1" , "O");
 	private HumanPlayer human = new HumanPlayer("player 2" , "X");
 	
@@ -15,6 +14,12 @@ public class TTTUltimateGame2 {
 	private int gameScoreToWin = 3;
 	
 	private int currentBoard = 0;
+	int aiFlag = 0;
+	
+	
+	int boardChoice = 0;
+	int rowChoice = 0; 
+	int colChoice = 0;
 	
 	String[] wonBoards = new String[9]; // create a new array to hold the won boards and marks
 	
@@ -25,16 +30,9 @@ public class TTTUltimateGame2 {
 	boolean booleanMakeMoveHumanTemp;	// to hold whether or not move is valid
 	
 	// constructor
-	public TTTUltimateGame2() {
-		System.out.println("Which mark would you like? (Enter X or O)");
-		Scanner input = new Scanner(System.in);
-		String playerMark = input.nextLine();
-		if(playerMark == "X") {
-			setPlayers("X", "O");
-		}
-		else if(playerMark == "O") {
-			setPlayers("O", "X");
-		}
+	public PlayerVSAI() {
+		setPlayers("X", "O");
+		
 		setBoard();
 	}
 	
@@ -45,14 +43,14 @@ public class TTTUltimateGame2 {
 	
 	
 	private void setPlayers(String mark1, String mark2) {
-		HumanPlayer h = new HumanPlayer("player 1", "X");
+		HumanPlayer h = new HumanPlayer("player 1", "X");	// human player is X
 		human = h;
-		ComputerPlayer c = new ComputerPlayer("player 2", "O");
+		ComputerPlayer c = new ComputerPlayer("player 2", "O"); // ai is O
 		ai = c;
 		
 	}
 	
-	int aiFlag = 0;
+
 	
 	
 	public boolean makeMoveAI() {
@@ -75,10 +73,7 @@ public class TTTUltimateGame2 {
 	}
 	
 	
-	
-	int boardChoice;
-	int rowChoice; 
-	int colChoice;
+
 	public boolean makeMoveHuman() {
 		
 		booleanMakeMoveHumanTemp = wholeBoard.makeMove(human.getSymbol(),
@@ -87,10 +82,10 @@ public class TTTUltimateGame2 {
 				colChoice, // random col
 				count, humanFlag);
 		
-		 tempMakeMoveBoard = wholeBoard.makeMove1(human.getSymbol(), human.rowChoice, human.colChoice);
+		 tempMakeMoveBoard = wholeBoard.convertToBoard(human.getSymbol(), human.rowChoice, human.colChoice);
 		 
 		 // if mandatory board is full, player can choose board
-		 if(checkBoardFull(wholeBoard.makeMove1(human.getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()))) {
+		 if(checkBoardFull(wholeBoard.convertToBoard(human.getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()))) {
 			tempFlag = true;
 			// player gets to make move at ANY BOARD
 			wholeBoard.makeMove(human.getSymbol(),
@@ -118,7 +113,6 @@ public class TTTUltimateGame2 {
 		int countFull = 0;
 		for(int i = 0; i < 9; i++) {
 			// if box is a MARK not a NUMBER, countFull++
-			
 			if(!wholeBoard.boards[mandatoryBoard].boxes[i].isAvailable(0)) {
 				countFull++;
 			}
@@ -160,7 +154,7 @@ public class TTTUltimateGame2 {
 				
 				
 				// display for board choice is wrong
-				System.out.println("Must place NEXT move on board #" + wholeBoard.makeMove1(human.getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()));
+				System.out.println("Must place NEXT move on board #" + wholeBoard.convertToBoard(human.getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()));
 				count = count + 2;
 				
 				print(currentBoard);

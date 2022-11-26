@@ -11,6 +11,7 @@ public class WholeBoard {
 	int lastRow = 0;
 	int lastCol = 0;
 	boolean tempMove;
+	int tempBoard;
 	
 	// default constructor
 	WholeBoard(){
@@ -34,27 +35,31 @@ public class WholeBoard {
             init();
         }
     }
+	
+	public int getCol() {
+		return lastCol;
+	}
+	
 	public void setCol(int col) {
 		  lastCol = col;
+	}
+
+	public int getRow() {
+		return lastRow;
 	}
 	public void setRow(int row) {
 		lastRow = row;
 	}
 	
-	public int getCol() {
-		return lastCol;
+	public int getBoard() {
+		return lastBoard;
 	}
-	public int getRow() {
-		return lastRow;
-	}
+	
 	
 	public void setBoard(int board) {
 		lastBoard = board;
 	}
 	
-	public int getBoard() {
-		return lastBoard;
-	}
 	
 	private void init() {
     	// declare new board object of size 9 of board
@@ -76,9 +81,9 @@ public class WholeBoard {
 	}
 	
 	// this method returns the mandatory board based on the row and col
-	int makeMove1(String mark, int randomRow, int randomCol) {
+	int convertToBoard(String mark, int row, int col) {
 		int mandatoryBoard = 0;
-		if(lastRow == 0 && randomCol == 0) {
+		if(lastRow == 0 && lastCol == 0) {
 			mandatoryBoard = 0;
         }
         else if (lastRow == 0 && lastCol == 1) {
@@ -109,7 +114,6 @@ public class WholeBoard {
 		return mandatoryBoard;
 	}
 	
-	int tempBoard;
 	// this method makes a move for a specific board
 	boolean makeMove(String mark, int boardChoice, int row, int col, int count, int flag) {
 		// if flag is ai
@@ -120,7 +124,7 @@ public class WholeBoard {
 		// lastRow and lastCol is still previous
 		if(count != 0) {
 			// make mandatory board choice (reinitialized the randomized boardChoice based on previous move)
-			boardChoice = makeMove1(mark, lastRow, lastCol);
+			boardChoice = convertToBoard(mark, lastRow, lastCol);
 			//System.out.println("Must Place On Board " + boardChoice);
 		}
 		

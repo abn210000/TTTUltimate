@@ -4,8 +4,8 @@ public class BoardUlt{ // package visibility / default
     public BoxUlt[] boxes;
     private String name;
     private int currentBoard = 0;
-    int currentRow = 0;
-	int currentCol = 0;
+    public int currentRow = 0;
+	public int currentCol = 0;
 	static int counter = 0;
   
     // custom constructor
@@ -16,6 +16,7 @@ public class BoardUlt{ // package visibility / default
  
         
     }
+    
     private void setBoard(int currentBoard) {
     	this.currentBoard = currentBoard;
     }

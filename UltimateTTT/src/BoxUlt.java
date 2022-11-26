@@ -52,11 +52,11 @@ public class BoxUlt{
     }
     
     
-    String getPlaceHolder() {
+    public String getPlaceHolder() {
     	return placeHolder;
     }
     
-    boolean setPlaceHolder(String placeHolder, int flag) {
+    public boolean setPlaceHolder(String placeHolder, int flag) {
     	if(isAvailable(flag)) {
     		this.placeHolder = placeHolder;
     		return true;
@@ -80,7 +80,7 @@ public class BoxUlt{
     	
   
     // is available if there isnt a mark
-    boolean isAvailable(int flag) {
+    public boolean isAvailable(int flag) {
     	// return true if placeHolder is a number
     	if (isNumeric(placeHolder)) {
     		return true;
@@ -89,7 +89,7 @@ public class BoxUlt{
     	return false;
     }
     
-    void print(int currentBoard){
+    public void print(int currentBoard){
     	
 	    	if(col == 0) {
 	    		System.out.print("Board #" + currentBoard + " ");

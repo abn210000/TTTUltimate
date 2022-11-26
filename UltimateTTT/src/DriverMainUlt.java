@@ -1,6 +1,15 @@
 // Allison Nguyen CS 2336.001
 
-// Analysis: We must create an Ultimate Tic Tac Toe Game in the Console
+// Purpose: We must create an Ultimate Tic Tac Toe Game in the Console
+// Analysis: Using OOP, we must create objects to create an Ultimate Tic Tac Toe Game, where each move is based on your opponents previous
+// Design: To create the structure of the WholeBoard, we create an array of 9 BoardUlt objects that each have an array of 9 BoxUlt objects.
+// We then create the HumanPlayer class and ComputerPlayer class to hold the attributes of each type of player. While running the DriverMainUlt, 
+// the user is prompted to choose which game mode they would like to play. If the user chooses any AI, then each move is placed with random number generators,
+// if the user chooses any Player versions, each move is made with given input for the board (if permissible), row, and column. When a move is made, a mark will 
+// be placed in the desired small box (every move is based on the opponents previous move). After each move, the game checks if there is a winner as well as if the
+// next mandatory board choice is full. If there is a winner, the game ends. If the next mandatory board choice is full, then the next player has a choice to
+// place on any board of their desire.
+
 
 
 
@@ -21,23 +30,28 @@ public class DriverMainUlt {
 		int gameMode = 0;
 		Scanner input = new Scanner(System.in);
 		gameMode = input.nextInt();
+		// input validate
+		if(gameMode < 1 || gameMode > 3) {
+			System.out.println("Please valid choice (1-3)");
+			gameMode = input.nextInt();
+		}
 		
 		switch(gameMode) {
 			// AI VS AI
 			case 1:
-				TTTUltimateGame game0 = new TTTUltimateGame();
+				AIVSAI game0 = new AIVSAI();
 				game0.start();
 				break;
 				
 			// Player VS Player
 			case 2:
-				TTTUltimateGame1 game1 = new TTTUltimateGame1();
+				PlayerVSPlayer game1 = new PlayerVSPlayer();
 				game1.start();
 				break;	
 				
 			// Player VS AI
 			case 3:
-				TTTUltimateGame2 game2 = new TTTUltimateGame2();
+				PlayerVSAI game2 = new PlayerVSAI();
 				game2.start();
 				break;
 		

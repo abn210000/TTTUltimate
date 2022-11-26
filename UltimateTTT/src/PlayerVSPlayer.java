@@ -1,6 +1,6 @@
 // PLAYER VS PLAYER
 
-public class TTTUltimateGame1 {
+public class PlayerVSPlayer {
 	
 	private HumanPlayer[] players = new HumanPlayer[2];
 	private WholeBoard wholeBoard;
@@ -25,7 +25,7 @@ public class TTTUltimateGame1 {
 	
 	
 	// constructor
-	public TTTUltimateGame1() {
+	public PlayerVSPlayer() {
 		setPlayers();
 		setBoard();
 	}
@@ -53,7 +53,7 @@ public class TTTUltimateGame1 {
 				count, humanFlag);
 		
 		// if mandatory board is full, player can choose board
-		if(checkBoardFull(wholeBoard.makeMove1(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()))) {
+		if(checkBoardFull(wholeBoard.convertToBoard(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()))) {
 			tempFlag = true;
 			// player gets to make move at ANY BOARD
 			wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),
@@ -87,7 +87,7 @@ public class TTTUltimateGame1 {
 				// if move is valid, increase count and display what next move is
 				if(makeMoveHuman() == true) {
 					count++;
-					System.out.println("Must place NEXT move on board #" + wholeBoard.makeMove1(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()));
+					System.out.println("Must place NEXT move on board #" + wholeBoard.convertToBoard(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()));
 					print(currentBoard);
 				}
 				// if move is invalid, display error and switchplayer so that player can redo move

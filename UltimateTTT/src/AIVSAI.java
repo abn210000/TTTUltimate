@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 // AI VS AI
-public class TTTUltimateGame {
+public class AIVSAI {
 	
 	private ComputerPlayer[] players = new ComputerPlayer[2];
 	
@@ -23,7 +23,7 @@ public class TTTUltimateGame {
 	public int count = 0;
 	
 	// constructor
-	public TTTUltimateGame() {
+	public AIVSAI() {
 		setPlayers();
 		setBoard();
 	}
