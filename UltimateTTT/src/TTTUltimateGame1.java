@@ -35,20 +35,34 @@ public class TTTUltimateGame1 {
 		this.wholeBoard = new WholeBoard(gameRowSize, gameColSize);
 	}
 	
-	
+
 	private void setPlayers() {
 		for (int i = 0; i < players.length; i++) {
 			HumanPlayer p = new HumanPlayer("player " + i+1, marks[i]);
 			players[i] = p;
 		}
 	}
-	
+	boolean tempHuman;
+	boolean tempFlag = false;
 	boolean makeMoveHuman() {
-		return wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),
+		tempHuman = wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),
 				boardChoice, // mark
 				rowChoice,	// random row
 				colChoice, // random col
 				count, humanFlag);
+		System.out.println("BOARD CHOICE IS " + wholeBoard.makeMove1(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()));
+		
+		// if mandatory board is full, player can choose board
+		if(checkBoardFull(wholeBoard.makeMove1(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()))) {
+			System.out.println("BOARD" + boardChoice+  "IS FULL! You may place on any board");
+			tempFlag = true;
+		
+			// make new move on ANY board
+
+			
+		}
+		
+		return tempHuman;
 	}
 	
 	public void start() {
@@ -57,9 +71,11 @@ public class TTTUltimateGame1 {
 		while(!GAMEOVER()) {
 				// alternate players
 				switchPlayer();
-				boardChoice = players[this.currentPlayerIndex].getBoard(count); // mark
+				boardChoice = players[this.currentPlayerIndex].getBoard(count, tempFlag); // mark
 				rowChoice = players[this.currentPlayerIndex].getRow();	// random row
 				colChoice = players[this.currentPlayerIndex].getCol();
+				
+				
 				// if move is valid, increase count and display what next move is
 				if(makeMoveHuman() == true) {
 					count++;
@@ -80,6 +96,26 @@ public class TTTUltimateGame1 {
 		}
 	}
 	
+
+	boolean checkBoardFull(int mandatoryBoard){
+		int countFull = 0;
+		for(int i = 0; i < 9; i++) {
+			// if box is a MARK not a NUMBER, countFull++
+			
+			if(!wholeBoard.boards[mandatoryBoard].boxes[i].isAvailable(0)) {
+				countFull++;
+			}
+		
+		}
+
+		System.out.println("countFUll = " + countFull);
+		if(countFull == 9) {
+			System.out.println("BOARD 0 is full");
+		
+			return true;
+		}
+		return false;
+	}
 	
 	
 	void print(int currentBoard) {

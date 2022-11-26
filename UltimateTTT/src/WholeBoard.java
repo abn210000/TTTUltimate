@@ -116,6 +116,7 @@ public class WholeBoard {
 		if(flag == 0) {
 			tempBoard = boardChoice;
 		}
+		
 		// lastRow and lastCol is still previous
 		if(count != 0) {
 			// make mandatory board choice (reinitialized the randomized boardChoice based on previous move)
@@ -131,9 +132,8 @@ public class WholeBoard {
 		
 		return tempMove;
 	}
-	
-	
-	
+
+		
 	 // this method determines if the boxes are full or empty
 	public boolean isFull(int flag) {
 		for(BoardUlt b : boards) {

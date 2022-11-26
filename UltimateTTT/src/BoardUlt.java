@@ -7,8 +7,7 @@ public class BoardUlt{ // package visibility / default
     int currentRow = 0;
 	int currentCol = 0;
 	static int counter = 0;
-    
-    
+  
     // custom constructor
     BoardUlt(int rowSize, int colSize, String name, int currentBoard){
         this.setName(name);
@@ -70,8 +69,7 @@ public class BoardUlt{ // package visibility / default
 		
     // this method will set a place holder on the desired box
     boolean makeMove(String mark,int board, int row, int col, int flag) {
-    	
- 
+    
     	return boxes[row * this.boardRowSize + col].setPlaceHolder(mark, flag);
     }
    
@@ -91,8 +89,6 @@ public class BoardUlt{ // package visibility / default
     	return boxes[row * this.boardRowSize + col].getPlaceHolder();
     	
     }
-    
- 
     	
     // is available if the board isn't full
     boolean isAvailable(int flag) {

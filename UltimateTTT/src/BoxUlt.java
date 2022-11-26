@@ -78,6 +78,7 @@ public class BoxUlt{
         return true;
     }
     	
+  
     // is available if there isnt a mark
     boolean isAvailable(int flag) {
     	// return true if placeHolder is a number

@@ -21,7 +21,7 @@ public class TTTUltimateGame2 {
 	public int lastMove = 0;
 	int humanFlag = 1;	// to hold if player or ai
 	int tempMakeMoveBoard = 0;	// to hold the temp board choice to determine if valid
-	
+	boolean tempFlag = false; // check if board is full
 	boolean booleanMakeMoveHumanTemp;	// to hold whether or not move is valid
 	
 	// constructor
@@ -114,7 +114,7 @@ public class TTTUltimateGame2 {
 			
 				
 			while(!GAMEOVER()) {
-				boardChoice = human.getBoard(count);
+				boardChoice = human.getBoard(count, tempFlag );
 				rowChoice = human.getRow();
 				colChoice = human.getCol();
 				// loop human move until valid choice
