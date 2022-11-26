@@ -42,23 +42,30 @@ public class TTTUltimateGame1 {
 			players[i] = p;
 		}
 	}
-	boolean tempHuman;
+
 	boolean tempFlag = false;
 	boolean makeMoveHuman() {
+		boolean tempHuman;
 		tempHuman = wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),
 				boardChoice, // mark
 				rowChoice,	// random row
 				colChoice, // random col
 				count, humanFlag);
+		
 		System.out.println("BOARD CHOICE IS " + wholeBoard.makeMove1(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()));
 		
 		// if mandatory board is full, player can choose board
 		if(checkBoardFull(wholeBoard.makeMove1(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()))) {
-			System.out.println("BOARD" + boardChoice+  "IS FULL! You may place on any board");
 			tempFlag = true;
-		
-			// make new move on ANY board
-
+			// player gets to make move at ANY BOARD
+			wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),players[this.currentPlayerIndex].getBoard(count, tempFlag)
+					,players[this.currentPlayerIndex].getRow()	// random row
+				,players[this.currentPlayerIndex].getCol(), count, humanFlag);
+			
+			
+			wholeBoard.boards[wholeBoard.tempBoard].boxes[wholeBoard.getRow() * 3 + wholeBoard.getCol()].setPlaceHolder(players[this.currentPlayerIndex].getSymbol(), 0);
+			
+			tempFlag = false;
 			
 		}
 		
@@ -110,7 +117,7 @@ public class TTTUltimateGame1 {
 
 		System.out.println("countFUll = " + countFull);
 		if(countFull == 9) {
-			System.out.println("BOARD 0 is full");
+			System.out.println("BOARD" + mandatoryBoard + " is full");
 		
 			return true;
 		}

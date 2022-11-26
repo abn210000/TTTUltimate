@@ -39,7 +39,9 @@ public class HumanPlayer {
 		  if(flag == true) {
 			  System.out.println("Choose Board");
 			  boardChoice = input.nextInt();
+			  
 		  }
+		  
 		 
 		  return boardChoice;
 	  }

@@ -80,6 +80,7 @@ public class TTTUltimateGame2 {
 			System.out.println("AI has placed on board# " + wholeBoard.tempBoard + " row " + wholeBoard.getRow() + " col " + wholeBoard.getCol());
 			System.out.println("VALID AI MOVE");
 			// place the mark if its valid
+			// FIX "O" LATER!!!!!
 			wholeBoard.boards[wholeBoard.tempBoard].boxes[wholeBoard.getRow() * 3 + wholeBoard.getCol()].setPlaceHolder("O", aiFlag);
 		}
 		return temp;

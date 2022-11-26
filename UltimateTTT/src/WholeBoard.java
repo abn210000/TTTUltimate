@@ -113,9 +113,9 @@ public class WholeBoard {
 	// this method makes a move for a specific board
 	boolean makeMove(String mark, int boardChoice, int row, int col, int count, int flag) {
 		// if flag is ai
-		if(flag == 0) {
+		//if(flag == 0 ) {
 			tempBoard = boardChoice;
-		}
+		//}
 		
 		// lastRow and lastCol is still previous
 		if(count != 0) {
