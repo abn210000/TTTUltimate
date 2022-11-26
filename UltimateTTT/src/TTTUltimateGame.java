@@ -48,19 +48,21 @@ public class TTTUltimateGame {
 				players[this.currentPlayerIndex].randomNumber(gameColSize), // random col
 				count, aiFlag));
 	}
+	
 	public void start() {
 		
 		System.out.println("game has started...");
 		while(!GAMEOVER()) {
+				// alternate players
 				switchPlayer();
-				// while loop to alternate player moves, passing in random row, col and board num
+				//if move is valid, increase count
 				if(makeMoveAI()) {
 					count++;
 				}
 					
-					System.out.println("count == " + count);
-					
-					print(currentBoard);
+				System.out.println("count == " + count);
+				
+				print(currentBoard);
 				
 			
 			

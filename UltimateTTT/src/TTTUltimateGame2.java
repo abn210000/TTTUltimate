@@ -53,46 +53,81 @@ public class TTTUltimateGame2 {
 	}
 	
 	int aiFlag = 0;
+	
+	
 	public boolean makeMoveAI() {
 		boolean temp;
 		
+		// making an ai move
 		temp = wholeBoard.makeMove(ai.getSymbol(),// mark
-				wholeBoard.makeMove1(human.getSymbol(), human.rowChoice, human.colChoice),
+				wholeBoard.tempBoard,
 				ai.randomNumber(gameRowSize),	// random row
 				ai.randomNumber(gameColSize), // random col
 				count, aiFlag);
+
 		
-		// display AI move
-		System.out.println("AI has placed on board# " + wholeBoard.tempBoard + " row " + wholeBoard.getRow() + " col " + wholeBoard.getCol());
+		
+		// if ai move is not valid, display where it attempted and error
+		if(temp == false) {
+			System.out.println("AI has placed on board# " + wholeBoard.tempBoard + " row " + wholeBoard.getRow() + " col " + wholeBoard.getCol());
+			System.out.println("AI HAS PLACED AN INVALID MOVE");
+		
+		}
+		
+		
+			// display AI move
+		if(temp == true) {
+			System.out.println("AI has placed on board# " + wholeBoard.tempBoard + " row " + wholeBoard.getRow() + " col " + wholeBoard.getCol());
+			
+
+		
+		}
 		return temp;
+		
 	}
 	
+	
+	
+	int boardChoice;
+	int rowChoice; 
+	int colChoice;
 	public boolean makeMoveHuman() {
 		
 		booleanMakeMoveHumanTemp = wholeBoard.makeMove(human.getSymbol(),
-				human.getBoard(count), // mark
-				human.getRow(),	// random row
-				human.getCol(), // random col
+				boardChoice, // mark
+				rowChoice,	// random row
+				colChoice, // random col
 				count, humanFlag);
-		 
+		
 		 tempMakeMoveBoard = wholeBoard.makeMove1(human.getSymbol(), human.rowChoice, human.colChoice);
 		 return booleanMakeMoveHumanTemp;
 	}
 	
-	
+	boolean tempMakeMoveAI;
 	int count = 0;
 	public void start() {
 		
 		System.out.println("game has started...");
-		
+			
 				
 			while(!GAMEOVER()) {
+				boardChoice = human.getBoard(count);
+				rowChoice = human.getRow();
+				colChoice = human.getCol();
 				// loop human move until valid choice
-				while(!makeMoveHuman()) {
-					makeMoveHuman();
+				if(makeMoveHuman() == true) {
+					print(currentBoard);
 				}
-				print(currentBoard);
-				makeMoveAI();
+				else if(makeMoveHuman() == false) {
+					System.out.println("Invalid Choice. Please select a valid choice (box with an integer)");
+					continue;
+				}
+				
+				
+				// loop makeMoveAI until valid move
+				while(!makeMoveAI());
+				// display for board choice is wrong
+				
 				System.out.println("Must place NEXT move on board #" + wholeBoard.makeMove1(human.getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()));
 				count = count + 2;
 				
@@ -121,7 +156,7 @@ public class TTTUltimateGame2 {
 		return false;
 	}
 
-	//LinkedList<Integer> wonBoards = new LinkedList<Integer>();
+	
 	
 	boolean checkWholeBoard(String[] wonBoards) {
 		
@@ -243,13 +278,20 @@ public class TTTUltimateGame2 {
 	
 	// check each row
 	boolean checkEachRow(int row, int smallBoard) {
-		int count = 0;
+		int countAI = 0;
+		int countHuman = 0;
 		for (int col = 0; col < this.gameColSize; col++) {
-			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(ai.getSymbol()) || wholeBoard.boards[smallBoard].getMark(row, col).equals(human.getSymbol())){
-				count++;
+			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(ai.getSymbol())){
+				countAI++;
 			}
-			if (count == this.gameScoreToWin) {
+			if(wholeBoard.boards[smallBoard].getMark(row, col).equals(human.getSymbol())) {
+				countHuman++;
+			}
+			if (countAI == this.gameScoreToWin || countHuman == this.gameScoreToWin) {
 				return true;
+			}
+			else {
+				return false;
 			}
 		}
 		return false;
@@ -268,15 +310,19 @@ public class TTTUltimateGame2 {
 	
 	// check each col
 	boolean checkEachCol(int col, int smallBoard) {
-		int count = 0;
+		int countAI = 0;
+		int countHuman = 0;
 		for (int row = 0; row < this.gameRowSize; row++) {
 			
-			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(ai.getSymbol()) || wholeBoard.boards[smallBoard].getMark(row, col).equals(human.getSymbol())) {
-				count++;
+			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(ai.getSymbol())) {
+				countAI++;
+			}
+			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(human.getSymbol())){
+				countHuman++;
 			}
 			
 		}
-		if (count == this.gameScoreToWin) {
+		if (countAI == this.gameScoreToWin || countHuman == this.gameScoreToWin) {
 			return true;
 		}
 		else {
@@ -287,13 +333,20 @@ public class TTTUltimateGame2 {
 	
 	// check each diag lr
 	boolean checkSmallDiagLR(int smallBoard) {
-		int count = 0;
+		int countAI = 0;
+		int countHuman = 0;
 		for (int row = 0, col = this.gameRowSize - 1; row < this.gameColSize && col >= 0; row++, col--) {
-			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(ai.getSymbol()) || wholeBoard.boards[smallBoard].getMark(row, col).equals(human.getSymbol())) {
-				count++;
+			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(ai.getSymbol())) {
+				countAI++;
 			}
-			if (count == this.gameScoreToWin) {
+			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(human.getSymbol())) {
+				countHuman++;
+			}
+			if (countAI == this.gameScoreToWin || countHuman == this.gameScoreToWin) {
 				return true;
+			}
+			else {
+				return false;
 			}
 		}
 		return false;
@@ -301,14 +354,21 @@ public class TTTUltimateGame2 {
 	
 	// check each small diag rl
 	boolean checkSmallDiagRL(int smallBoard) {
-		int count = 0;
+		int countAI = 0;
+		int countHuman = 0;
 		for (int col = 0, row = 0; col < this.gameColSize && row < this.gameRowSize; col++, row++) {
-			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(ai.getSymbol()) || wholeBoard.boards[smallBoard].getMark(row, col).equals(human.getSymbol())) {
-				count++;
+			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(ai.getSymbol())) {
+				countAI++;
+			}
+			if(wholeBoard.boards[smallBoard].getMark(row, col).equals(human.getSymbol())) {
+				countHuman++;
 			}
 			
-			if(count == this.gameScoreToWin) {
+			if (countAI == this.gameScoreToWin || countHuman == this.gameScoreToWin) {
 				return true;
+			}
+			else {
+				return false;
 			}
 		}
 		return false;

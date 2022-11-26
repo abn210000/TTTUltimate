@@ -112,7 +112,10 @@ public class WholeBoard {
 	int tempBoard;
 	// this method makes a move for a specific board
 	boolean makeMove(String mark, int boardChoice, int row, int col, int count, int flag) {
-		tempBoard = boardChoice;
+		// if flag is ai
+		if(flag == 0) {
+			tempBoard = boardChoice;
+		}
 		// lastRow and lastCol is still previous
 		if(count != 0) {
 			// make mandatory board choice (reinitialized the randomized boardChoice based on previous move)

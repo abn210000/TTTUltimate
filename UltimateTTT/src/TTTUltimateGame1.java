@@ -16,6 +16,9 @@ public class TTTUltimateGame1 {
 	
 	int humanFlag = 1;
 	int count = 0;
+	int boardChoice;
+	int rowChoice;
+	int colChoice;
 	
 	// create a new array to hold the won boards and marks
 	String[] wonBoards = new String[9];
@@ -40,27 +43,41 @@ public class TTTUltimateGame1 {
 		}
 	}
 	
+	boolean makeMoveHuman() {
+		return wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),
+				boardChoice, // mark
+				rowChoice,	// random row
+				colChoice, // random col
+				count, humanFlag);
+	}
+	
 	public void start() {
 		
 		System.out.println("game has started...");
-		do {
+		while(!GAMEOVER()) {
+				// alternate players
 				switchPlayer();
-				// while loop to alternate player moves, passing in random row, col and board num
-				
-				while(!wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),
-						players[this.currentPlayerIndex].getBoard(count), // mark
-						players[this.currentPlayerIndex].getRow(),	// random row
-						players[this.currentPlayerIndex].getCol(), // random col
-						count, humanFlag));	// random board
-	
-					System.out.println("Must place NEXT move on board #" + wholeBoard.makeMove1(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()));
-					System.out.println("count == " + count);
+				boardChoice = players[this.currentPlayerIndex].getBoard(count); // mark
+				rowChoice = players[this.currentPlayerIndex].getRow();	// random row
+				colChoice = players[this.currentPlayerIndex].getCol();
+				// if move is valid, increase count and display what next move is
+				if(makeMoveHuman() == true) {
 					count++;
+					System.out.println("Must place NEXT move on board #" + wholeBoard.makeMove1(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()));
 					print(currentBoard);
+				}
+				// if move is invalid, display error and switchplayer so that player can redo move
+				else if (makeMoveHuman() == false) {
+					System.out.println("Invalid Choice. Please select a valid choice (box with an integer)");
+					switchPlayer();
+					continue;
+				}
+				System.out.println("count == " + count);
+					
 			
 			
 			
-		}while(!GAMEOVER());
+		}
 	}
 	
 	
