@@ -78,9 +78,9 @@ public class TTTUltimateGame2 {
 			// display AI move
 		if(temp == true) {
 			System.out.println("AI has placed on board# " + wholeBoard.tempBoard + " row " + wholeBoard.getRow() + " col " + wholeBoard.getCol());
-			
-
-		
+			System.out.println("VALID AI MOVE");
+			// place the mark if its valid
+			wholeBoard.boards[wholeBoard.tempBoard].boxes[wholeBoard.getRow() * 3 + wholeBoard.getCol()].setPlaceHolder("O", aiFlag);
 		}
 		return temp;
 		
@@ -103,6 +103,9 @@ public class TTTUltimateGame2 {
 		 return booleanMakeMoveHumanTemp;
 	}
 	
+	
+	
+	
 	boolean tempMakeMoveAI;
 	int count = 0;
 	public void start() {
@@ -118,16 +121,17 @@ public class TTTUltimateGame2 {
 				if(makeMoveHuman() == true) {
 					print(currentBoard);
 				}
+				// if makeMoveHuman is invalid, do another iteration of the loop
 				else if(makeMoveHuman() == false) {
 					System.out.println("Invalid Choice. Please select a valid choice (box with an integer)");
 					continue;
 				}
 				
-				
-				// loop makeMoveAI until valid move
+				// loop until makeMoveAI returns true
 				while(!makeMoveAI());
-				// display for board choice is wrong
 				
+				
+				// display for board choice is wrong
 				System.out.println("Must place NEXT move on board #" + wholeBoard.makeMove1(human.getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()));
 				count = count + 2;
 				

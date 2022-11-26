@@ -84,13 +84,7 @@ public class BoxUlt{
     	if (isNumeric(placeHolder)) {
     		return true;
     	}
-    	/*
-    	else if (flag == 1) {
-    		System.out.println("Spot is filled. Enter new move");
-    		
-    		return false;
-
-    	}*/
+    	
     	return false;
     }
     
