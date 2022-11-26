@@ -65,23 +65,10 @@ public class TTTUltimateGame2 {
 				ai.randomNumber(gameColSize), // random col
 				count, aiFlag);
 
-		
-		
-		// if ai move is not valid, display where it attempted and error
-		if(temp == false) {
-			System.out.println("AI has placed on board# " + wholeBoard.tempBoard + " row " + wholeBoard.getRow() + " col " + wholeBoard.getCol());
-			System.out.println("AI HAS PLACED AN INVALID MOVE");
-		
-		}
-		
-		
 			// display AI move
 		if(temp == true) {
 			System.out.println("AI has placed on board# " + wholeBoard.tempBoard + " row " + wholeBoard.getRow() + " col " + wholeBoard.getCol());
-			System.out.println("VALID AI MOVE");
-			// place the mark if its valid
-			// FIX "O" LATER!!!!!
-			wholeBoard.boards[wholeBoard.tempBoard].boxes[wholeBoard.getRow() * 3 + wholeBoard.getCol()].setPlaceHolder("O", aiFlag);
+			wholeBoard.boards[wholeBoard.tempBoard].boxes[wholeBoard.getRow() * 3 + wholeBoard.getCol()].setPlaceHolder(ai.getSymbol(), aiFlag);
 		}
 		return temp;
 		
@@ -101,10 +88,50 @@ public class TTTUltimateGame2 {
 				count, humanFlag);
 		
 		 tempMakeMoveBoard = wholeBoard.makeMove1(human.getSymbol(), human.rowChoice, human.colChoice);
+		 
+		 // if mandatory board is full, player can choose board
+		 if(checkBoardFull(wholeBoard.makeMove1(human.getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()))) {
+			tempFlag = true;
+			// player gets to make move at ANY BOARD
+			wholeBoard.makeMove(human.getSymbol(),
+				human.getBoard(count, tempFlag),
+				human.getRow(),	// random row
+				human.getCol(), count, humanFlag);
+			
+			// place mark
+			wholeBoard.boards[wholeBoard.tempBoard].boxes[wholeBoard.getRow() * 3 + wholeBoard.getCol()].setPlaceHolder(human.getSymbol(), 0);
+			
+			// reset flag
+			tempFlag = false;
+			
+		}
+		
+
+	
+
 		 return booleanMakeMoveHumanTemp;
 	}
 	
 	
+
+	boolean checkBoardFull(int mandatoryBoard){
+		int countFull = 0;
+		for(int i = 0; i < 9; i++) {
+			// if box is a MARK not a NUMBER, countFull++
+			
+			if(!wholeBoard.boards[mandatoryBoard].boxes[i].isAvailable(0)) {
+				countFull++;
+			}
+		
+		}
+
+		if(countFull == 9) {
+			System.out.println("Board#" + mandatoryBoard + " is full! You may choose any board");
+		
+			return true;
+		}
+		return false;
+	}
 	
 	
 	boolean tempMakeMoveAI;

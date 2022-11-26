@@ -32,7 +32,6 @@ public class HumanPlayer {
 	  Scanner input = new Scanner(System.in);
 	  
 	  public int getBoard(int count, boolean flag) {
-		  System.out.println("flag" + flag );
 		  if(count == 0) {
 			  flag = true;
 		  }
