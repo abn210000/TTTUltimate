@@ -96,11 +96,6 @@ public class PlayerVSPlayer {
 					switchPlayer();
 					continue;
 				}
-				System.out.println("count == " + count);
-					
-			
-			
-			
 		}
 	}
 	
@@ -126,7 +121,6 @@ public class PlayerVSPlayer {
 	
 	
 	void print(int currentBoard) {
-		
 		wholeBoard.print(currentBoard);
 	}
 	
@@ -187,12 +181,6 @@ public class PlayerVSPlayer {
 			return true;
 		}
 		
-		// print (DELETE LATER)
-		for(int i = 0; i < 9; i++) {
-			System.out.print(wonBoards[i] + " ");
-			
-		}
-		System.out.println("");
 		return false;
 		
 	}
@@ -216,24 +204,15 @@ public class PlayerVSPlayer {
 	// check small board win
 	boolean checkSmallBoardWin(int smallBoard) {
 			if(checkSmallRows(smallBoard)) {
-				
-				System.out.println("3 in a row on board" + smallBoard);
-				
 				return true;
 			}
 			else if(checkSmallCols(smallBoard)) {
-			
-				System.out.println("3 in a rol on board" + smallBoard);
 				return true;
 			}
 			else if(checkSmallDiagLR(smallBoard)) {
-				
-				System.out.println("3 in a diag LR on board" + smallBoard);
 				return true;
 			}
 			else if(checkSmallDiagRL(smallBoard)) {
-				
-				System.out.println("3 in a diag RL on board" + smallBoard);
 				return true;
 			}
 		

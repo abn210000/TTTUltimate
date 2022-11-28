@@ -58,10 +58,7 @@ public class AIVSAI {
 				if(makeMoveAI()) {
 					count++;
 				}
-					
-				System.out.println("count == " + count);
-				
-				print(currentBoard);
+			print(currentBoard);
 				
 		}
 	}
@@ -124,11 +121,6 @@ public class AIVSAI {
 			return true;
 		}
 		
-		// print (DELETE LATER)
-		for(int i = 0; i < 9; i++) {
-			System.out.print(wonBoards[i] + " ");
-			
-		}
 		return false;
 		
 	}
@@ -152,24 +144,15 @@ public class AIVSAI {
 	// check small board win
 	private boolean checkSmallBoardWin(int smallBoard) {
 			if(checkSmallRows(smallBoard)) {
-				
-				System.out.println("3 in a row on board" + smallBoard);
-				
 				return true;
 			}
 			else if(checkSmallCols(smallBoard)) {
-			
-				System.out.println("3 in a rol on board" + smallBoard);
 				return true;
 			}
 			else if(checkSmallDiagLR(smallBoard)) {
-				
-				System.out.println("3 in a diag LR on board" + smallBoard);
 				return true;
 			}
 			else if(checkSmallDiagRL(smallBoard)) {
-				
-				System.out.println("3 in a diag RL on board" + smallBoard);
 				return true;
 			}
 		
@@ -226,6 +209,10 @@ public class AIVSAI {
 		}
 		else {
 			return false;
+			
+			
+			
+			
 		}
 	}
 	

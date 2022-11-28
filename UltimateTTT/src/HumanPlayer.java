@@ -39,7 +39,7 @@ public class HumanPlayer {
 		  if(flag == true) {
 			  System.out.println("Choose Board");
 				 
-			  // input validate row choice if out of range OR incorrect type
+			  // input validate board choice if out of range OR incorrect type
 			  boolean valid = false;
 				while(!valid) 	{
 					
@@ -51,11 +51,11 @@ public class HumanPlayer {
 							valid = true;
 						}
 						else {
-							System.out.println("Invalid Board Choice (Must Choose from 0 - 2)");
+							System.out.println("Invalid Board Choice (Must Choose from 0 - 8)");
 						}
 					}
 					catch (InputMismatchException e){
-						System.out.println("Invalid Board Choice (Must Choose from 0 - 2)");
+						System.out.println("Invalid Board Choice (Must Choose from 0 - 8)");
 						input.next();
 						
 					}
@@ -85,7 +85,7 @@ public class HumanPlayer {
 					rowChoice = input.nextInt();
 					
 					// if gameMode is in range, return
-					if(rowChoice >= 1 && rowChoice <= 3) {
+					if(rowChoice >= 0 && rowChoice <= 2) {
 						valid = true;
 					}
 					else {
@@ -120,7 +120,7 @@ public class HumanPlayer {
 					colChoice = input.nextInt();
 					
 					// if gameMode is in range, return
-					if(colChoice >= 1 && colChoice <= 3) {
+					if(colChoice >= 0 && colChoice <= 2) {
 						valid = true;
 					}
 					else {
