@@ -1,4 +1,3 @@
-import java.util.LinkedList;
 
 // AI VS AI
 public class AIVSAI {
@@ -52,7 +51,7 @@ public class AIVSAI {
 	public void start() {
 		
 		System.out.println("game has started...");
-		while(!GAMEOVER()) {
+		while(!gameOver()) {
 				// alternate players
 				switchPlayer();
 				//if move is valid, increase count
@@ -64,8 +63,6 @@ public class AIVSAI {
 				
 				print(currentBoard);
 				
-			
-			
 		}
 	}
 	
@@ -86,9 +83,7 @@ public class AIVSAI {
 		}
 	}
 	
-	
-
-	boolean GAMEOVER() {
+	boolean gameOver() {
 		
 		if(checkWholeBoard(wonBoards)) {
 			System.out.println(this.marks[this.currentPlayerIndex] + " is the winner!");
@@ -100,10 +95,8 @@ public class AIVSAI {
 		}
 		return false;
 	}
-
-	//LinkedList<Integer> wonBoards = new LinkedList<Integer>();
 	
-	boolean checkWholeBoard(String[] wonBoards) {
+	private boolean checkWholeBoard(String[] wonBoards) {
 		
 		checkSmallWinLoop();
 		if(wonBoards[0] == players[currentPlayerIndex].getSymbol() && wonBoards[1] == players[currentPlayerIndex].getSymbol() && wonBoards[2] == players[currentPlayerIndex].getSymbol()) {
@@ -141,7 +134,7 @@ public class AIVSAI {
 	}
 	
 	
-	void checkSmallWinLoop() {
+	private void checkSmallWinLoop() {
 		// iterate through each small board
 		for(int smallBoard = 0; smallBoard < 9; smallBoard++) {
 			// if element at smallBoard in wonBoards array is null, you are permitted to place a mark
@@ -157,7 +150,7 @@ public class AIVSAI {
 	}
 	
 	// check small board win
-	boolean checkSmallBoardWin(int smallBoard) {
+	private boolean checkSmallBoardWin(int smallBoard) {
 			if(checkSmallRows(smallBoard)) {
 				
 				System.out.println("3 in a row on board" + smallBoard);
@@ -184,7 +177,7 @@ public class AIVSAI {
 	}
 	
 	// check if a row has been won
-	boolean checkSmallRows(int smallBoard) {
+	private boolean checkSmallRows(int smallBoard) {
 		for(int row = 0; row < this.gameRowSize; row++) {
 			if(checkEachRow(row, smallBoard)) {
 				return true;
@@ -194,7 +187,7 @@ public class AIVSAI {
 	}
 	
 	// check each row
-	boolean checkEachRow(int row, int smallBoard) {
+	private boolean checkEachRow(int row, int smallBoard) {
 		int count = 0;
 		for (int col = 0; col < this.gameColSize; col++) {
 			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(players[currentPlayerIndex].getSymbol())) {
@@ -209,7 +202,7 @@ public class AIVSAI {
 	
 	
 	// check for win in cols
-	boolean checkSmallCols(int smallBoard) {
+	private boolean checkSmallCols(int smallBoard) {
 		for(int col = 0; col < this.gameColSize; col++) {
 			if(checkEachCol(col, smallBoard)) {
 				return true;
@@ -219,7 +212,7 @@ public class AIVSAI {
 	}
 	
 	// check each col
-	boolean checkEachCol(int col, int smallBoard) {
+	private boolean checkEachCol(int col, int smallBoard) {
 		int count = 0;
 		for (int row = 0; row < this.gameRowSize; row++) {
 			
@@ -238,7 +231,7 @@ public class AIVSAI {
 	
 	
 	// check each diag lr
-	boolean checkSmallDiagLR(int smallBoard) {
+	private boolean checkSmallDiagLR(int smallBoard) {
 		int count = 0;
 		for (int row = 0, col = this.gameRowSize - 1; row < this.gameColSize && col >= 0; row++, col--) {
 			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(players[currentPlayerIndex].getSymbol())) {
@@ -252,7 +245,7 @@ public class AIVSAI {
 	}
 	
 	// check each small diag rl
-	boolean checkSmallDiagRL(int smallBoard) {
+	private boolean checkSmallDiagRL(int smallBoard) {
 		int count = 0;
 		for (int col = 0, row = 0; col < this.gameColSize && row < this.gameRowSize; col++, row++) {
 			if (wholeBoard.boards[smallBoard].getMark(row, col).equals(players[currentPlayerIndex].getSymbol())) {

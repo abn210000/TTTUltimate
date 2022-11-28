@@ -14,7 +14,7 @@ public class PlayerVSPlayer {
 	private int currentPlayerIndex = 0;
 	private int currentBoard = 0;
 	
-	int humanFlag = 1;
+	int playerFlag = 1;
 	int count = 0;
 	int boardChoice;
 	int rowChoice;
@@ -50,7 +50,7 @@ public class PlayerVSPlayer {
 				boardChoice, // mark
 				rowChoice,	// random row
 				colChoice, // random col
-				count, humanFlag);
+				count, playerFlag);
 		
 		// if mandatory board is full, player can choose board
 		if(checkBoardFull(wholeBoard.convertToBoard(players[this.currentPlayerIndex].getSymbol(), wholeBoard.getRow(), wholeBoard.getCol()))) {
@@ -59,7 +59,7 @@ public class PlayerVSPlayer {
 			wholeBoard.makeMove(players[this.currentPlayerIndex].getSymbol(),
 				players[this.currentPlayerIndex].getBoard(count, tempFlag),
 				players[this.currentPlayerIndex].getRow(),	// random row
-				players[this.currentPlayerIndex].getCol(), count, humanFlag);
+				players[this.currentPlayerIndex].getCol(), count, playerFlag);
 			
 			// place mark
 			wholeBoard.boards[wholeBoard.tempBoard].boxes[wholeBoard.getRow() * 3 + wholeBoard.getCol()].setPlaceHolder(players[this.currentPlayerIndex].getSymbol(), 0);
@@ -76,7 +76,7 @@ public class PlayerVSPlayer {
 	public void start() {
 		
 		System.out.println("game has started...");
-		while(!GAMEOVER()) {
+		while(!gameOver()) {
 				// alternate players
 				switchPlayer();
 				boardChoice = players[this.currentPlayerIndex].getBoard(count, tempFlag); // mark
@@ -144,7 +144,7 @@ public class PlayerVSPlayer {
 	
 	
 
-	boolean GAMEOVER() {
+	boolean gameOver() {
 		
 		if(checkWholeBoard(wonBoards)) {
 			System.out.println(this.marks[this.currentPlayerIndex] + " is the winner!");

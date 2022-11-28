@@ -1,6 +1,5 @@
-import java.util.Scanner;
-
 //HUMAN VS AI
+
 public class PlayerVSAI {
 	private ComputerPlayer ai = new ComputerPlayer("player 1" , "O");
 	private HumanPlayer human = new HumanPlayer("player 2" , "X");
@@ -13,17 +12,14 @@ public class PlayerVSAI {
 	private int gameColSize = 3;
 	private int gameScoreToWin = 3;
 	
-	private int currentBoard = 0;
-	int aiFlag = 0;
-	
-	
 	int boardChoice = 0;
 	int rowChoice = 0; 
 	int colChoice = 0;
 	
 	String[] wonBoards = new String[9]; // create a new array to hold the won boards and marks
 	
-	public int lastMove = 0;
+	private int currentBoard = 0;
+	int aiFlag = 0;
 	int humanFlag = 1;	// to hold if player or ai
 	int tempMakeMoveBoard = 0;	// to hold the temp board choice to determine if valid
 	boolean tempFlag = false; // check if board is full
@@ -49,25 +45,29 @@ public class PlayerVSAI {
 		ai = c;
 		
 	}
-	
-
-	
-	
+	// making an ai move
 	public boolean makeMoveAI() {
 		boolean temp;
-		
-		// making an ai move
+		int tempRow = ai.randomNumber(gameRowSize);
+		int tempCol = ai.randomNumber(gameColSize);
+	
+		// make ai move if true
 		temp = wholeBoard.makeMove(ai.getSymbol(),// mark
 				wholeBoard.tempBoard,
-				ai.randomNumber(gameRowSize),	// random row
-				ai.randomNumber(gameColSize), // random col
+				tempRow,	// random row
+				tempCol, // random col
 				count, aiFlag);
-
-			// display AI move
+		
+		
+		
+		// display AI move
 		if(temp == true) {
+			
 			System.out.println("AI has placed on board# " + wholeBoard.tempBoard + " row " + wholeBoard.getRow() + " col " + wholeBoard.getCol());
 			wholeBoard.boards[wholeBoard.tempBoard].boxes[wholeBoard.getRow() * 3 + wholeBoard.getCol()].setPlaceHolder(ai.getSymbol(), aiFlag);
 		}
+		
+		
 		return temp;
 		
 	}
@@ -108,26 +108,6 @@ public class PlayerVSAI {
 	}
 	
 	
-
-	boolean checkBoardFull(int mandatoryBoard){
-		int countFull = 0;
-		for(int i = 0; i < 9; i++) {
-			// if box is a MARK not a NUMBER, countFull++
-			if(!wholeBoard.boards[mandatoryBoard].boxes[i].isAvailable(0)) {
-				countFull++;
-			}
-		
-		}
-
-		if(countFull == 9) {
-			System.out.println("Board#" + mandatoryBoard + " is full! You may choose any board");
-		
-			return true;
-		}
-		return false;
-	}
-	
-	
 	boolean tempMakeMoveAI;
 	int count = 0;
 	public void start() {
@@ -135,7 +115,7 @@ public class PlayerVSAI {
 		System.out.println("game has started...");
 			
 				
-			while(!GAMEOVER()) {
+			while(!gameOver()) {
 				boardChoice = human.getBoard(count, tempFlag );
 				rowChoice = human.getRow();
 				colChoice = human.getCol();
@@ -161,6 +141,26 @@ public class PlayerVSAI {
 			}
 				
 	}
+
+
+	boolean checkBoardFull(int mandatoryBoard){
+		int countFull = 0;
+		for(int i = 0; i < 9; i++) {
+			// if box is a MARK not a NUMBER, countFull++
+			if(!wholeBoard.boards[mandatoryBoard].boxes[i].isAvailable(0)) {
+				countFull++;
+			}
+		
+		}
+
+		if(countFull == 9) {
+			System.out.println("Board#" + mandatoryBoard + " is full! You may choose any board");
+		
+			return true;
+		}
+		return false;
+	}
+	
 	
 	
 	void print(int currentBoard) {
@@ -169,7 +169,7 @@ public class PlayerVSAI {
 	}
 	
 
-	boolean GAMEOVER() {
+	boolean gameOver() {
 		
 		if(checkWholeBoard(wonBoards)) {
 			System.out.println(this.marks[0] + " is the winner!");

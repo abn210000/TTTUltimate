@@ -13,6 +13,7 @@
 
 
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class DriverMainUlt {
@@ -27,14 +28,33 @@ public class DriverMainUlt {
 		System.out.println("2. Player vs Player");
 		System.out.println("3. Player vs AI");
 		
+		
 		int gameMode = 0;
+		
 		Scanner input = new Scanner(System.in);
-		gameMode = input.nextInt();
-		// input validate
-		if(gameMode < 1 || gameMode > 3) {
-			System.out.println("Please valid choice (1-3)");
-			gameMode = input.nextInt();
+		
+		// input validate if input is incorrect type or out of range
+		boolean valid = false;
+		while(!valid) {
+			
+			try {
+				gameMode = input.nextInt();
+				
+				// if gameMode is in range, return
+				if(gameMode >= 1 && gameMode <= 3) {
+					valid = true;
+				}
+				else {
+					System.out.println("Please valid choice (1-3)");
+				}
+			}
+			catch (InputMismatchException e){
+				System.out.println("Please valid choice (1-3)");
+				input.next();
+				
+			}
 		}
+		while(gameMode < 1 || gameMode > 3);
 		
 		switch(gameMode) {
 			// AI VS AI
@@ -56,9 +76,6 @@ public class DriverMainUlt {
 				break;
 		
 		
-		
-		
+			}
 		}
 	}
-	
-}

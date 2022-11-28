@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class HumanPlayer {
@@ -37,13 +38,33 @@ public class HumanPlayer {
 		  }
 		  if(flag == true) {
 			  System.out.println("Choose Board");
-			  boardChoice = input.nextInt();
-			  
+				 
+			  // input validate row choice if out of range OR incorrect type
+			  boolean valid = false;
+				while(!valid) 	{
+					
+					try {
+						boardChoice = input.nextInt();
+						
+						// if gameMode is in range, return
+						if(boardChoice >= 0 && boardChoice <= 8) {
+							valid = true;
+						}
+						else {
+							System.out.println("Invalid Board Choice (Must Choose from 0 - 2)");
+						}
+					}
+					catch (InputMismatchException e){
+						System.out.println("Invalid Board Choice (Must Choose from 0 - 2)");
+						input.next();
+						
+					}
+				}
 		  }
-		  
-		 
 		  return boardChoice;
+				
 	  }
+		  
 	  
 	  
 	  public void setBoard(int boardChoice) {
@@ -51,15 +72,33 @@ public class HumanPlayer {
 		  
 	  }
 	  
+	
 	  public int getRow() {
 
 		  System.out.println("Choose Row");
-		  rowChoice = input.nextInt();
 		  
-		  while(rowChoice < 0 || rowChoice > 2) {
-			  System.out.println("Invalid Row Choice (Must Choose from 0 - 2");
-			  rowChoice = input.nextInt();
-		  }
+		  // input validate row choice if out of range OR incorrect type
+		  boolean valid = false;
+			while(!valid) {
+				
+				try {
+					rowChoice = input.nextInt();
+					
+					// if gameMode is in range, return
+					if(rowChoice >= 1 && rowChoice <= 3) {
+						valid = true;
+					}
+					else {
+						System.out.println("Invalid Row Choice (Must Choose from 0 - 2)");
+					}
+				}
+				catch (InputMismatchException e){
+					System.out.println("Invalid Row Choice (Must Choose from 0 - 2)");
+					input.next();
+					
+				}
+			}
+		 
 		  
 		  return rowChoice;
 	  }
@@ -70,16 +109,35 @@ public class HumanPlayer {
 	  }
 	  
 	  public int getCol() {
+
 		  System.out.println("Choose Col");
-		  colChoice = input.nextInt();
 		  
-		  while(colChoice < 0 || colChoice > 2) {
-			  System.out.println("Invalid Col Choice (Must Choose from 0 - 2");
-			  colChoice = input.nextInt();
-		  }
+		  // input validate row choice if out of range OR incorrect type
+		  boolean valid = false;
+			while(!valid) {
+				
+				try {
+					colChoice = input.nextInt();
+					
+					// if gameMode is in range, return
+					if(colChoice >= 1 && colChoice <= 3) {
+						valid = true;
+					}
+					else {
+						System.out.println("Invalid Col Choice (Must Choose from 0 - 2)");
+					}
+				}
+				catch (InputMismatchException e){
+					System.out.println("Invalid Col Choice (Must Choose from 0 - 2)");
+					input.next();
+					
+				}
+			}
+		 
 		  
 		  return colChoice;
 	  }
+	  
 	  public void setCol(int colChoice) {
 		  this.colChoice = colChoice;
 	  }
