@@ -47,10 +47,10 @@ public class PlayerVSAI {
 	}
 	// making an ai move
 	public boolean makeMoveAI() {
-		boolean temp;
+		boolean temp = false;
 		int tempRow = ai.randomNumber(gameRowSize);
 		int tempCol = ai.randomNumber(gameColSize);
-	
+		
 		// make ai move if true
 		temp = wholeBoard.makeMove(ai.getSymbol(),// mark
 				wholeBoard.tempBoard,
@@ -58,12 +58,16 @@ public class PlayerVSAI {
 				tempCol, // random col
 				count, aiFlag);
 		
-		
-		
+		if(temp == false) {
+			System.out.println("AI has placed on board# " + wholeBoard.tempBoard + " row " + wholeBoard.getRow() + " col " + wholeBoard.getCol());
+			System.out.println("temp is false!!!!!");
+			return temp;
+		}
 		// display AI move
 		if(temp == true) {
 			
 			System.out.println("AI has placed on board# " + wholeBoard.tempBoard + " row " + wholeBoard.getRow() + " col " + wholeBoard.getCol());
+			System.out.println("temp is true!!!!!");
 			wholeBoard.boards[wholeBoard.tempBoard].boxes[wholeBoard.getRow() * 3 + wholeBoard.getCol()].setPlaceHolder(ai.getSymbol(), aiFlag);
 		}
 		
@@ -101,9 +105,6 @@ public class PlayerVSAI {
 			
 		}
 		
-
-	
-
 		 return booleanMakeMoveHumanTemp;
 	}
 	
